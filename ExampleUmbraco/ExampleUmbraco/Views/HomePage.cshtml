@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = null;
+}
+
+@Umbraco.Field("appName", insertBefore:"<h1>", insertAfter:"</h1>")
+<h3>@Umbraco.Field("title")</h3>
