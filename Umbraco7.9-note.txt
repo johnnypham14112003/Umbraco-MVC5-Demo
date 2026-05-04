@@ -1,0 +1,200 @@
+1. Create project ASP.NET Web Application (.NET Framework) with Empty Template (none tick[X] any WebForm/MVC/WebApi)
+2. Install Package: UmbracoCms (7.9.0)
+3. Accept all override for install (Yes to All)
+4. Clean and rebuild
+5. Run without debug.
+
+-------------------------------------------------
+After run:
+1. Create temp account (this is for local data not send to Umbraco service server)
+2. There are important 3 components need to know:
+	+ Settings/Document Types	(a place to declare each content field)
+	+ Settings/Templates		(a place to create the UI using CSHTML) (Pages)
+	+ Content			(a place to fill the data to declared field in Doc Types)
+
+3. Create Document Type:
+	+ Create DocType with template (they will be sync name) or without template (to naming file your option)
+	+ Create a tab (just for serperate many property - easier looking)
+		- Tab name (*1)
+		- Properties (*2)
+	+ Config Permissions:
+		- Allow as root [v] (If want to use for main route like "/" or "/home")
+		- Allowed child node types: (create tree struture like folder structure for sub-url and easier write content)
+		eg: "DocType1" have child "DocType2". Then in the Content will have folder structure and url:
+		localhost:/Doctype1/DocType2
+		
+	+ Config Templates: (*1 doc can have many templates <=> 1 data - many views)
+		- If in previous step choose create with template then this will be auto configured
+		- Without template: Add the custom template name to allow using this DocType.
+
+4. Create Template:
+	+ Declare:
+		- "Strongly-Typed":
+			@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Example>
+			@using ContentModels = Umbraco.Web.PublishedContentModels;
+			@{}
+			<h1>@Model.Content.AppName</h1>
+		- Or "Dynamic Model":	
+			@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+			@{}
+			@Umbraco.Field("appName", insertBefore:"<h1>", insertAfter:"</h1>")
+			<h3>@Umbraco.Field("title")</h3>
+
+5. Create Content:
+	+ First creation will be like the parent (root) folder that contain properties of the DocType its implement.
+	***Content for first page even if the page is implement another Layout(general layout)***
+
+	+ After config DocType for child node, right click the parent Content file to create a sub Content
+
+-------------------------------------------------
+Embedded Data from backend:
+1. Create Controllers folder in Umbraco Project.
+
+2. Create Controller class inherit SurfaceController:
+	using DALClassLibray;
+	using System.Web.Mvc;
+	using Umbraco.Web.Mvc;
+
+	namespace ExampleUmbraco.Controllers
+	{
+		public class EmbedController : SurfaceController
+		{
+			private readonly MotorService ms;
+			public EmbedController()
+        		{
+            			ms = new MotorService();
+        		}
+
+	        	[ChildActionOnly]
+        		public ActionResult RenderFeaturedProducts()
+        		{
+	            		var data = ms.GetMotors();
+            			return PartialView("~/Views/Partials/MotorWidget.cshtml", data);
+        		}
+    		}
+	}
+
+3. Create Partial View:
+	@model  IEnumerable<DALClassLibray.Motor>
+
+	@foreach (var item in Model)
+	{
+    		<div class="col">
+        		<div class="card h-100 border-1 shadow-sm motor-card">
+
+            			<div class="motor-img-container">
+                		@if (string.IsNullOrWhiteSpace(item.ImageUrl))
+                		{
+                    			<img src="~/wwwroot/icons/black-moto.png" alt="motor image" />
+                		}
+                		else
+                		{
+                    			<img src="@item.ImageUrl" alt="motor image" />
+                		}
+		            	</div>
+
+	            		<div class="card-body d-flex flex-column text-center">
+			                <h2 class="card-title text-uppercase motor-name mb-1">
+			                    @item.Name
+			                </h2>
+
+			                <div class="mb-3">
+			                    <span class="motor-price">@item.Price VNĐ</span>
+			                </div>
+
+			                <p class="card-text text-muted motor-desc">
+			                    @item.Description
+			                </p>
+
+			                <div class="mt-auto pt-3">
+			                    @Html.ActionLink("DETAILS", "DetailMotor", "Home", new { id = item.Id }, new { @class = "btn btn-outline-dark w-100 fw-bold rounded-pill" })
+			                </div>
+				</div>
+		        </div>
+	    	</div>
+	}
+
+4. Call Partial View from Umbraco View:
+	@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+	@{
+		Layout = null;
+	}
+
+	<h2>Content từ Umbraco</h2>
+	@Umbraco.Field("sampleData1", insertBefore:"<h1>", insertAfter:"</h1>")
+	<h3>@Umbraco.Field("sampleData2")</h3>
+	<hr/>
+	<h2>Content Sản phẩm nổi bật từ Backend</h2>
+	    @Html.Action("RenderFeaturedProducts", "Embed")
+	@*HtmlAction syntax: Html.Action("MethodName", "Controller")*@
+
+-------------------------------------------------
+Custom View Route from backend:
+*Umbraco has tech "Catch-all" that prevent custom route views and controllers so must config in step 4*
+
+1. Create Controllers folder in Umbraco Project.
+
+2. Create Controller class:
+	using DALClassLibray;
+	using System.Web.Mvc;
+
+	namespace ExampleUmbraco.Controllers
+	{
+	    public class AdminController : Controller
+	    {
+	        private readonly MotorService ms;
+	        public AdminController()
+	        {
+	            ms = new MotorService();
+	        }
+
+	        // GET: Admin
+	        public ActionResult Index()
+	        {
+	            var data = ms.GetMotors();
+
+	            return View(data);
+	        }
+	    }
+	}
+
+3. Create View like normal MVC5 Razor Page do:
+	@model  IEnumerable<DALClassLibray.Motor>
+	@{
+	    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	    ViewBag.Title = "Dashboard";
+	    short num = 1;
+	}
+	...
+	@foreach (var item in Model)
+	{
+	   ...
+	}
+
+4. Config Route by create a class in the project level:
+	using System.Web.Mvc;
+	using System.Web.Routing;
+	using Umbraco.Core;
+
+	namespace ExampleUmbraco
+	{
+	    // This class auto run first when Umbraco run
+	    public class RegisterCustomRoute : ApplicationEventHandler
+	    {
+	        protected override void ApplicationStarted(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
+	        {
+	            RouteTable.Routes.MapRoute(
+	                name: "CustomAdminRoute",
+	                url: "admin/{action}/{id}",
+	                defaults: new
+	                {
+	                    controller = "Admin",
+	                    action = "Index",
+	                    id = UrlParameter.Optional
+	                }
+	            );
+	        }
+	    }
+	}
+
+5. Rebuild all project.
