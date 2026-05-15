@@ -34,12 +34,22 @@ After run:
 			@using ContentModels = Umbraco.Web.PublishedContentModels;
 			@{}
 			<h1>@Model.Content.AppName</h1>
+			
 		- Or "Dynamic Model":	
 			@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 			@{}
 			@Umbraco.Field("appName", insertBefore:"<h1>", insertAfter:"</h1>")
 			<h3>@Umbraco.Field("title")</h3>
+			
+		- More Detail about call each Umbraco function in cshtml:
+		https://docs.umbraco.com/umbraco-cms/model-your-content/property-editors/built-in-umbraco-property-editors
 
+	** For Umbraco 7: use GetPropertyValue() of Umbraco instead Value() of MVC **
+	eg: var propertyValue = Model.Content.GetPropertyValue("aliasName");
+	
+	var navProp = Model.Content.GetProperty("listNavigators");
+var listNavigatorsRaw = navProp.DataValue.ToString();
+	
 5. Create Content:
 	+ First creation will be like the parent (root) folder that contain properties of the DocType its implement.
 	***Content for first page even if the page is implement another Layout(general layout)***

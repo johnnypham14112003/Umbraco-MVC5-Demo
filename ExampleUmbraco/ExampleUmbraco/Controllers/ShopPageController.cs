@@ -1,4 +1,7 @@
-﻿using Service.Interfaces;
+﻿using Repository.Models;
+using Repository.Repository;
+using Service.Interfaces;
+using Service.Services;
 using System;
 using System.Web.Mvc;
 using Umbraco.Web.Models;
@@ -10,9 +13,17 @@ namespace ExampleUmbraco.Controllers
     {
         private readonly IMotorService _motorService;
 
-        public ShopPageController(IMotorService motorService)
+        public ShopPageController()
         {
-            _motorService = motorService;
+            // ExampleDbContext sẽ tự động đọc chuỗi "ExampleDb" trong Web.config
+            var dbContext = new ExampleDbContext();
+
+            var motorRepository = new MotorRepository(dbContext);
+
+            // (Nếu dùng AutoMapper 3.3.1)
+            var mapper = AutoMapper.Mapper.Engine;
+
+            _motorService = new MotorService(motorRepository, mapper);
         }
 
         public override ActionResult Index(RenderModel model)
