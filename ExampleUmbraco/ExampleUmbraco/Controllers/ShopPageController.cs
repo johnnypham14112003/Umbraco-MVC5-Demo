@@ -1,4 +1,5 @@
-﻿using Repository.Models;
+﻿using ExampleUmbraco.App_Start;
+using Repository.Models;
 using Repository.Repository;
 using Service.Interfaces;
 using Service.Services;
@@ -12,9 +13,9 @@ namespace ExampleUmbraco.Controllers
     {
         private readonly IMotorService _motorService;
 
-        public ShopPageController(IMotorService motorService)
+        public ShopPageController()
         {
-            _motorService = motorService;
+            _motorService = AppServiceLocator.GetMotorService();
         }
 
         public override ActionResult Index(RenderModel model)

@@ -1,6 +1,6 @@
-﻿using LightInject;
+﻿using AutoMapper;
+using Services;
 using Umbraco.Core;
-using Umbraco.Web;
 
 namespace ExampleUmbraco.App_Start
 {
@@ -11,24 +11,7 @@ namespace ExampleUmbraco.App_Start
             ApplicationContext applicationContext)
         {
             // 1. Khởi tạo AutoMapper
-            AutoMapperConfig.Configure();
-
-            // 2. Lấy LightInject container của Umbraco
-            var container = (IServiceContainer)DependencyResolver.Current
-                                .GetService(typeof(IServiceContainer));
-
-            if (container == null) return;
-
-            // 3. Đăng ký DbContext - PerRequest để tránh conflict
-            container.Register<AppDbContext>(new PerRequestLifeTime());
-
-            // 4. Đăng ký Repository
-            container.Register<IProductRepository, ProductRepository>(
-                new PerRequestLifeTime());
-
-            // 5. Đăng ký Service
-            container.Register<IProductService, ProductService>(
-                new PerRequestLifeTime());
+            Mapper.AddProfile<MotorProfile>();
         }
     }
 }

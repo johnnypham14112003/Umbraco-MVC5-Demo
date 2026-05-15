@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IMotorService.cs" />
+    <Compile Include="MotorProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\MotorService.cs" />
