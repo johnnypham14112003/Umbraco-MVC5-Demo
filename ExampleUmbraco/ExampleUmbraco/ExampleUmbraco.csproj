@@ -277,10 +277,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\EmbedController.cs" />
+    <Compile Include="Controllers\ShopPageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterCustomRoute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config\imageprocessor\security.config" />
@@ -339,9 +337,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DALClassLibray\DALClassLibray.csproj">
-      <Project>{0a6afc5e-0cfb-4cef-86ee-c16a64c5a65b}</Project>
-      <Name>DALClassLibray</Name>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{3f04aa1f-a46a-447d-8cea-26ee79f0dda8}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{7167427d-be45-419e-ba78-7ffc99dc4a73}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
