@@ -8,8 +8,8 @@ namespace Repository.Repository
 {
     public class AccountRepository : IAccountRepository
     {
-        private readonly ExampleDbContext _context;
-        public AccountRepository(ExampleDbContext context)
+        private readonly CustomDbContext _context;
+        public AccountRepository(CustomDbContext context)
         {
             _context = context;
         }

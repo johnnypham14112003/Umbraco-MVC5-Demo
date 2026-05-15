@@ -12,25 +12,17 @@ namespace ExampleUmbraco.Controllers
     {
         private readonly IMotorService _motorService;
 
-        public ShopPageController()
+        public ShopPageController(IMotorService motorService)
         {
-            // ExampleDbContext sẽ tự động đọc chuỗi "ExampleDb" trong Web.config
-            var dbContext = new ExampleDbContext();
-
-            var motorRepository = new MotorRepository(dbContext);
-
-            // (Nếu dùng AutoMapper 3.3.1)
-            var mapper = AutoMapper.Mapper.Engine;
-
-            _motorService = new MotorService(motorRepository, mapper);
+            _motorService = motorService;
         }
 
         public override ActionResult Index(RenderModel model)
         {
-                var motorList = _motorService.GetAll();
-                ViewBag.MotorList = motorList;
+            var motorList = _motorService.GetAll();
+            ViewBag.MotorList = motorList;
 
-                return CurrentTemplate(model);
+            return CurrentTemplate(model);
         }
     }
 }

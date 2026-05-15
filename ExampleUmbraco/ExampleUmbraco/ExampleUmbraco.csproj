@@ -249,6 +249,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CustomDb.mdf" />
+    <Content Include="App_Data\CustomDb_log.ldf">
+      <DependentUpon>CustomDb.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
@@ -334,7 +338,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repository\Repository.csproj">

@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Repository.Models
 {
-    public partial class ExampleDbContext : DbContext
+    public partial class CustomDbContext : DbContext
     {
-        public ExampleDbContext() : base("ExampleDb") { }//name of the db connectString
+        public CustomDbContext() : base("name=CustomLocalDb") { }//name of connectString in Web.config
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Motor> Motors { get; set; }

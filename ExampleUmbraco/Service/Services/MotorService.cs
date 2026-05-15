@@ -11,23 +11,21 @@ namespace Service.Services
     public class MotorService : IMotorService
     {
         private readonly IMotorRepository _motorRepository;
-        private readonly IMappingEngine _mapper;
 
-        public MotorService(IMotorRepository motorRepository, IMappingEngine mapper)
+        public MotorService(IMotorRepository motorRepository)
         {
             _motorRepository = motorRepository;
-            _mapper = mapper;
         }
 
         public IEnumerable<MotorViewModel> GetAll()
         {
-            return _mapper.Map<IEnumerable<MotorViewModel>>(_motorRepository.GetAll());
+            return Mapper.Map<IEnumerable<MotorViewModel>>(_motorRepository.GetAll());
         }
 
         public IEnumerable<MotorViewModel> Search(string keyword)
         {
             return string.IsNullOrWhiteSpace(keyword) == true ?
-                GetAll() : _mapper.Map<IEnumerable<MotorViewModel>>(_motorRepository.GetByName(keyword));
+                GetAll() : Mapper.Map<IEnumerable<MotorViewModel>>(_motorRepository.GetByName(keyword));
         }
 
         public bool Add(MotorViewModel item)
@@ -37,7 +35,7 @@ namespace Service.Services
                 return false;
             }
 
-            return _motorRepository.Add(_mapper.Map<Motor>(item));
+            return _motorRepository.Add(Mapper.Map<Motor>(item));
         }
 
         public bool Delete(Guid id)
@@ -48,17 +46,17 @@ namespace Service.Services
         public MotorViewModel GetDetail(Guid id)
         {
             var exist = _motorRepository.Get(id);
-            return _mapper.Map<MotorViewModel>(exist);
+            return Mapper.Map<MotorViewModel>(exist);
         }
 
         public MotorViewModel UpdateImage(Guid id, string url)
         {
-            return _mapper.Map<MotorViewModel>(_motorRepository.UpdateImage(id, url));
+            return Mapper.Map<MotorViewModel>(_motorRepository.UpdateImage(id, url));
         }
 
         public bool Update(MotorViewModel item)
         {
-            return _motorRepository.Update(_mapper.Map<Motor>(item));
+            return _motorRepository.Update(Mapper.Map<Motor>(item));
         }
     }
 }

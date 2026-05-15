@@ -2,14 +2,17 @@
 using Repository.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Configuration;
 
 namespace Repository.Repository
 {
     public class MotorRepository : IMotorRepository
     {
-        private readonly ExampleDbContext _context;
-        public MotorRepository(ExampleDbContext context)
+        private readonly CustomDbContext _context;
+
+        public MotorRepository(CustomDbContext context)
         {
             _context = context;
         }
