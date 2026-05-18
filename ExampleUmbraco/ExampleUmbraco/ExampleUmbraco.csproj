@@ -281,6 +281,7 @@
     <Content Include="config\Lang\ru-RU.user.xml" />
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
+    <Content Include="Content\black-moto.png" />
     <Content Include="Content\Site.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
@@ -289,6 +290,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AppServiceLocator.cs" />
     <Compile Include="App_Start\DependencyRegistrar.cs" />
+    <Compile Include="Controllers\MotorSurfaceController.cs" />
     <Compile Include="Controllers\ShopPageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -350,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
+    <Folder Include="Views\MotorSurface\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Repository\Repository.csproj">
