@@ -290,6 +290,7 @@
   <ItemGroup>
     <Compile Include="App_Start\AppServiceLocator.cs" />
     <Compile Include="App_Start\DependencyRegistrar.cs" />
+    <Compile Include="Controllers\AuthSurfaceController.cs" />
     <Compile Include="Controllers\MotorSurfaceController.cs" />
     <Compile Include="Controllers\ShopPageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -339,6 +340,7 @@
     <Content Include="Views\HomePage.cshtml" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\ShopPage.cshtml" />
+    <Content Include="Views\Partials\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -352,6 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
+    <Folder Include="Views\AuthSurface\" />
     <Folder Include="Views\MotorSurface\" />
   </ItemGroup>
   <ItemGroup>

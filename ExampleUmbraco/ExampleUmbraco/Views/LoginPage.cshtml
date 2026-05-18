@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "Layout.cshtml";
+}
+
+<main aria-labelledby="title" class="vh-50">
+    <div class="d-flex flex-column justify-content-center align-items-center mt-md-5 border rounded border-dark">    
+    @Html.Partial("~/Views/Partials/Login.cshtml", new Service.ViewModels.AuthViewModel())
+    </div>
+</main>
