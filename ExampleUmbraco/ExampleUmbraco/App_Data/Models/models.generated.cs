@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "8ef24d15ac994ce1")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.4")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "52566cf9f721e145")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.3")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -540,6 +540,167 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ShopPage, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// categories
+		///</summary>
+		[ImplementPropertyType("categories")]
+		public string Categories
+		{
+			get { return this.GetPropertyValue<string>("categories"); }
+		}
+
+		///<summary>
+		/// list-category
+		///</summary>
+		[ImplementPropertyType("listCategory")]
+		public Umbraco.Web.Models.RelatedLinks ListCategory
+		{
+			get { return this.GetPropertyValue<Umbraco.Web.Models.RelatedLinks>("listCategory"); }
+		}
+
+		///<summary>
+		/// list-filter
+		///</summary>
+		[ImplementPropertyType("listFilter")]
+		public Umbraco.Web.Models.RelatedLinks ListFilter
+		{
+			get { return this.GetPropertyValue<Umbraco.Web.Models.RelatedLinks>("listFilter"); }
+		}
+
+		///<summary>
+		/// shoppage-brand-images
+		///</summary>
+		[ImplementPropertyType("shoppageBrandImages")]
+		public IEnumerable<IPublishedContent> ShoppageBrandImages
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("shoppageBrandImages"); }
+		}
+
+		///<summary>
+		/// shoppage-brand-section
+		///</summary>
+		[ImplementPropertyType("shoppageBrandSection")]
+		public string ShoppageBrandSection
+		{
+			get { return this.GetPropertyValue<string>("shoppageBrandSection"); }
+		}
+
+		///<summary>
+		/// shoppage-brand-section-description
+		///</summary>
+		[ImplementPropertyType("shoppageBrandSectionDescription")]
+		public string ShoppageBrandSectionDescription
+		{
+			get { return this.GetPropertyValue<string>("shoppageBrandSectionDescription"); }
+		}
+	}
+
+	/// <summary>AboutPage</summary>
+	[PublishedContentModel("aboutPage")]
+	public partial class AboutPage : LayoutDeclaration
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "aboutPage";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public AboutPage(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<AboutPage, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// aboutpage-brand-description
+		///</summary>
+		[ImplementPropertyType("aboutpageBrandDescription")]
+		public string AboutpageBrandDescription
+		{
+			get { return this.GetPropertyValue<string>("aboutpageBrandDescription"); }
+		}
+
+		///<summary>
+		/// aboutpage-brand-images
+		///</summary>
+		[ImplementPropertyType("aboutpageBrandImages")]
+		public IEnumerable<IPublishedContent> AboutpageBrandImages
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("aboutpageBrandImages"); }
+		}
+
+		///<summary>
+		/// aboutpage-brand-title
+		///</summary>
+		[ImplementPropertyType("aboutpageBrandTitle")]
+		public string AboutpageBrandTitle
+		{
+			get { return this.GetPropertyValue<string>("aboutpageBrandTitle"); }
+		}
+
+		///<summary>
+		/// aboutpage-description
+		///</summary>
+		[ImplementPropertyType("aboutpageDescription")]
+		public string AboutpageDescription
+		{
+			get { return this.GetPropertyValue<string>("aboutpageDescription"); }
+		}
+
+		///<summary>
+		/// aboutpage-hero-image
+		///</summary>
+		[ImplementPropertyType("aboutpageHeroImage")]
+		public IPublishedContent AboutpageHeroImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("aboutpageHeroImage"); }
+		}
+
+		///<summary>
+		/// aboutpage-service-description
+		///</summary>
+		[ImplementPropertyType("aboutpageServiceDescription")]
+		public string AboutpageServiceDescription
+		{
+			get { return this.GetPropertyValue<string>("aboutpageServiceDescription"); }
+		}
+
+		///<summary>
+		/// aboutpage-service-list
+		///</summary>
+		[ImplementPropertyType("aboutpageServiceList")]
+		public IEnumerable<string> AboutpageServiceList
+		{
+			get { return this.GetPropertyValue<IEnumerable<string>>("aboutpageServiceList"); }
+		}
+
+		///<summary>
+		/// aboutpage-service-title
+		///</summary>
+		[ImplementPropertyType("aboutpageServiceTitle")]
+		public string AboutpageServiceTitle
+		{
+			get { return this.GetPropertyValue<string>("aboutpageServiceTitle"); }
+		}
+
+		///<summary>
+		/// aboutpage-title
+		///</summary>
+		[ImplementPropertyType("aboutpageTitle")]
+		public string AboutpageTitle
+		{
+			get { return this.GetPropertyValue<string>("aboutpageTitle"); }
 		}
 	}
 
