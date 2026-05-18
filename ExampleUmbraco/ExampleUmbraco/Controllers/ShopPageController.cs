@@ -1,8 +1,5 @@
 ﻿using ExampleUmbraco.App_Start;
-using Repository.Models;
-using Repository.Repository;
 using Service.Interfaces;
-using Service.Services;
 using System.Web.Mvc;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
