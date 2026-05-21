@@ -292,7 +292,7 @@
     <Compile Include="App_Start\DependencyRegistrar.cs" />
     <Compile Include="Controllers\AuthSurfaceController.cs" />
     <Compile Include="Controllers\MotorSurfaceController.cs" />
-    <Compile Include="Controllers\ShopPageController.cs" />
+    <Compile Include="Controllers\ShopPageDeclarationController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -334,13 +334,16 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Partials\ShopClothesList.cshtml" />
     <Content Include="Views\AboutPage.cshtml" />
     <Content Include="Views\HomePage.cshtml" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\ShopPage.cshtml" />
-    <Content Include="Views\Partials\Login.cshtml" />
+    <Content Include="Views\Partials\HomePageNested\HomePageSection1.cshtml" />
+    <Content Include="Views\Partials\HomePageNested\HomePageSection2.cshtml" />
+    <Content Include="Views\Partials\HomePageNested\HomePageSection3.cshtml" />
+    <Content Include="Views\Partials\_LoginForm.cshtml" />
+    <Content Include="Views\LoginPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

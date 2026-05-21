@@ -1,0 +1,89 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<IPublishedContent>
+@using Umbraco.Web.Models
+@using Newtonsoft.Json.Linq
+@{
+    var feature1Img = Model.Content.GetPropertyValue<IPublishedContent>("feature1Image");
+    var feature2Img = Model.Content.GetPropertyValue<IPublishedContent>("feature2Image");
+    var feature3Img = Model.Content.GetPropertyValue<IPublishedContent>("feature3Image");
+}
+
+    <!-- Start Featured Product -->
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">@Umbraco.Field("titleFeature")</h1>
+                    <p>@Umbraco.Field("descriptionFeature")</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="shop-single.html">
+                            <img src="@(feature1Img != null ? feature1Img.Url : "")" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">@Umbraco.Field("feature1Price")</li>
+                            </ul>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">@Umbraco.Field("feature1Name")</a>
+                            <p class="card-text">@Umbraco.Field("feature1Description")</p>
+                            <p class="text-muted">@Umbraco.Field("feature1Review")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="shop-single.html">
+                            <img src="@(feature2Img != null ? feature2Img.Url : "")" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">@Umbraco.Field("feature2Price")</li>
+                            </ul>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">@Umbraco.Field("feature2Name")</a>
+                            <p class="card-text">@Umbraco.Field("feature2Description")</p>
+                            <p class="text-muted">@Umbraco.Field("feature2Review")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="shop-single.html">
+                            <img src="@(feature3Img != null ? feature3Img.Url : "")" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                </li>
+                                <li class="text-muted text-right">@Umbraco.Field("feature3Price")</li>
+                            </ul>
+                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">@Umbraco.Field("feature3Name")</a>
+                            <p class="card-text">@Umbraco.Field("feature3Description")</p>
+                            <p class="text-muted">@Umbraco.Field("feature3Review")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Featured Product -->

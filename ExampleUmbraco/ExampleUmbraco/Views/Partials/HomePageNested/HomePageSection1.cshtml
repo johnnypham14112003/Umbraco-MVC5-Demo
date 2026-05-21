@@ -1,0 +1,80 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<IPublishedContent>
+@using Umbraco.Web.Models
+@using Newtonsoft.Json.Linq
+@{
+    var banner1Img = Model.Content.GetPropertyValue<IPublishedContent>("banner1Image");
+    var banner2Img = Model.Content.GetPropertyValue<IPublishedContent>("banner2Image");
+    var banner3Img = Model.Content.GetPropertyValue<IPublishedContent>("banner3Image");
+}
+
+<!-- Start Banner Hero -->
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="@(banner1Img != null ? banner1Img.Url : "")" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 class="h1 text-success"><b>@Umbraco.Field("brandName")</b> - @Umbraco.Field("banner1MainTitle")</h1>
+                                <h3 class="h2">@Umbraco.Field("banner1SubTitle")</h3>
+                                <p>
+                                    @Umbraco.Field("banner1Description")
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="@(banner2Img != null ? banner2Img.Url : "")" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">@Umbraco.Field("banner2MainTitle")</h1>
+                                <h3 class="h2">@Umbraco.Field("banner2SubTitle")</h3>
+                                <p>
+                                    @Umbraco.Field("banner2Description")
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="@(banner3Img != null ? banner3Img.Url : "")" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">@Umbraco.Field("banner3MainTitle")</h1>
+                                <h3 class="h2">@Umbraco.Field("banner3SubTitle")</h3>
+                                <p>
+                                    @Umbraco.Field("banner3Description")
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+    <!-- End Banner Hero -->

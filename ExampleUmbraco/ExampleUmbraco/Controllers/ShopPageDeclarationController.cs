@@ -6,11 +6,12 @@ using Umbraco.Web.Mvc;
 
 namespace ExampleUmbraco.Controllers
 {
-    public class ShopPageController : RenderMvcController
+    // Name must match with the Alias of Document Type
+    public class ShopPageDeclarationController : RenderMvcController
     {
         private readonly IMotorService _motorService;
 
-        public ShopPageController()
+        public ShopPageDeclarationController()
         {
             _motorService = AppServiceLocator.GetMotorService();
         }

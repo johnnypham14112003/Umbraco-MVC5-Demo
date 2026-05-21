@@ -2,27 +2,41 @@
 @using Umbraco.Web.Models
 @using Newtonsoft.Json.Linq
 @{
-    var tabIcon = Model.Content.GetPropertyValue<IPublishedContent>("tabIcon");
+    // Get data content directly on a node without depend on CurrentPage node
+    var nodeLayoutContent = Umbraco.TypedContentAtRoot()
+                                   .FirstOrDefault(x => x.DocumentTypeAlias == "layoutDeclaration");
+                                   
+    var tabIcon = nodeLayoutContent.GetPropertyValue<IPublishedContent>("tabIcon");
 
     // Get RAW to make UMBRACO skip CONVERTER
-    var navProp = Model.Content.GetProperty("listNavigators");
+    var navProp = nodeLayoutContent.GetProperty("listNavigators");
     var listNavigatorsRaw = (navProp != null && navProp.DataValue != null) ? navProp.DataValue.ToString() : "";
     JArray navArray = !string.IsNullOrWhiteSpace(listNavigatorsRaw) ? JArray.Parse(listNavigatorsRaw) : new JArray();
 
-    var prodProp = Model.Content.GetProperty("listProductsRef");
+    var prodProp = nodeLayoutContent.GetProperty("listProductsRef");
     var listProductsRefRaw = (prodProp != null && prodProp.DataValue != null) ? prodProp.DataValue.ToString() : "";
     JArray prodArray = !string.IsNullOrWhiteSpace(listProductsRefRaw) ? JArray.Parse(listProductsRefRaw) : new JArray();
 
-    var otherProp = Model.Content.GetProperty("listOthersRef");
+    var otherProp = nodeLayoutContent.GetProperty("listOthersRef");
     var listOthersRefRaw = (otherProp != null && otherProp.DataValue != null) ? otherProp.DataValue.ToString() : "";
     JArray otherArray = !string.IsNullOrWhiteSpace(listOthersRefRaw) ? JArray.Parse(listOthersRefRaw) : new JArray();
+    
+    string tabTitle = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("tabTitle") : "";
+    string mailTo = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("mailTo") : "";
+    string telephone = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("telephone") : "";
+    string brandName = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("brandName") : "";
+    string address = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("address") : "";
+    string copyRight = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("copyRight") : "";
+    
+    var titleListProductsRef = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("titleListProductsRef") : "";
+    var titleListOthersRef = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("titleListOthersRef") : "";
 }
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>@Umbraco.Field("tabTitle")</title>
+    <title>@tabTitle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,9 +58,9 @@
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:@Umbraco.Field("mailTo", casing: RenderFieldCaseType.Lower)">@Umbraco.Field("mailTo", casing: RenderFieldCaseType.Lower)</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:@mailTo.ToLower()">@mailTo.ToLower()</a>
                     <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:@Umbraco.Field("telephone")">@Umbraco.Field("telephone")</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:@telephone">@telephone</a>
                 </div>
                 <div>
                     <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
@@ -63,7 +77,7 @@
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="/">
-                @Umbraco.Field("brandName", casing: RenderFieldCaseType.Upper)
+                @brandName
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,21 +165,21 @@
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            @Umbraco.Field("address")
+                            @address
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:@Umbraco.Field("telephone")">@Umbraco.Field("telephone")</a>
+                            <a class="text-decoration-none" href="tel:@telephone">@telephone</a>
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:@Umbraco.Field("mailTo")">@Umbraco.Field("mailTo")</a>
+                            <a class="text-decoration-none" href="mailto:@mailTo">@mailTo</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">@Umbraco.Field("titleListProductsRef")</h2>
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">@titleListProductsRef</h2>
                     @if (prodArray != null && prodArray.Count > 0)
                     {
                         <ul class="list-unstyled text-light footer-link-list">
@@ -190,7 +204,7 @@
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">@titleListOthersRef</h2>
                     @if (otherArray != null && otherArray.Count > 0)
                     {
                         <ul class="list-unstyled text-light footer-link-list">
@@ -251,7 +265,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; @Umbraco.Field("copyRight")
+                            Copyright &copy; @copyRight
                             | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
                         </p>
                     </div>
