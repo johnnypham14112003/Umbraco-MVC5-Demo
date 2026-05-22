@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "661cb1db3f8e9378")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.10")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "b842bc40cdaee548")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -184,111 +184,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// banner 1 description
+		/// placeholder temp
 		///</summary>
-		[ImplementPropertyType("banner1Description")]
-		public IHtmlString Banner1Description
+		[ImplementPropertyType("placeholderTemp")]
+		public string PlaceholderTemp
 		{
-			get { return this.GetPropertyValue<IHtmlString>("banner1Description"); }
-		}
-
-		///<summary>
-		/// banner 1 image
-		///</summary>
-		[ImplementPropertyType("banner1Image")]
-		public IPublishedContent Banner1Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("banner1Image"); }
-		}
-
-		///<summary>
-		/// banner 1 main title
-		///</summary>
-		[ImplementPropertyType("banner1MainTitle")]
-		public string Banner1MainTitle
-		{
-			get { return this.GetPropertyValue<string>("banner1MainTitle"); }
-		}
-
-		///<summary>
-		/// banner 1 sub title
-		///</summary>
-		[ImplementPropertyType("banner1SubTitle")]
-		public string Banner1SubTitle
-		{
-			get { return this.GetPropertyValue<string>("banner1SubTitle"); }
-		}
-
-		///<summary>
-		/// banner 2 description
-		///</summary>
-		[ImplementPropertyType("banner2Description")]
-		public IHtmlString Banner2Description
-		{
-			get { return this.GetPropertyValue<IHtmlString>("banner2Description"); }
-		}
-
-		///<summary>
-		/// banner 2 image
-		///</summary>
-		[ImplementPropertyType("banner2Image")]
-		public IPublishedContent Banner2Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("banner2Image"); }
-		}
-
-		///<summary>
-		/// banner 2 main title
-		///</summary>
-		[ImplementPropertyType("banner2MainTitle")]
-		public string Banner2MainTitle
-		{
-			get { return this.GetPropertyValue<string>("banner2MainTitle"); }
-		}
-
-		///<summary>
-		/// banner 2 sub title
-		///</summary>
-		[ImplementPropertyType("banner2SubTitle")]
-		public string Banner2SubTitle
-		{
-			get { return this.GetPropertyValue<string>("banner2SubTitle"); }
-		}
-
-		///<summary>
-		/// banner 3 description
-		///</summary>
-		[ImplementPropertyType("banner3Description")]
-		public IHtmlString Banner3Description
-		{
-			get { return this.GetPropertyValue<IHtmlString>("banner3Description"); }
-		}
-
-		///<summary>
-		/// banner 3 image
-		///</summary>
-		[ImplementPropertyType("banner3Image")]
-		public IPublishedContent Banner3Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("banner3Image"); }
-		}
-
-		///<summary>
-		/// banner 3 main title
-		///</summary>
-		[ImplementPropertyType("banner3MainTitle")]
-		public string Banner3MainTitle
-		{
-			get { return this.GetPropertyValue<string>("banner3MainTitle"); }
-		}
-
-		///<summary>
-		/// banner 3 sub title
-		///</summary>
-		[ImplementPropertyType("banner3SubTitle")]
-		public string Banner3SubTitle
-		{
-			get { return this.GetPropertyValue<string>("banner3SubTitle"); }
+			get { return this.GetPropertyValue<string>("placeholderTemp"); }
 		}
 	}
 
@@ -318,75 +219,21 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// category 1 image
+		/// home section 2 description
 		///</summary>
-		[ImplementPropertyType("category1Image")]
-		public IPublishedContent Category1Image
+		[ImplementPropertyType("homeSection2Description")]
+		public string HomeSection2Description
 		{
-			get { return this.GetPropertyValue<IPublishedContent>("category1Image"); }
+			get { return this.GetPropertyValue<string>("homeSection2Description"); }
 		}
 
 		///<summary>
-		/// category 1 name
+		/// home section 2 title
 		///</summary>
-		[ImplementPropertyType("category1Name")]
-		public string Category1Name
+		[ImplementPropertyType("homeSection2Title")]
+		public string HomeSection2Title
 		{
-			get { return this.GetPropertyValue<string>("category1Name"); }
-		}
-
-		///<summary>
-		/// category 2 image
-		///</summary>
-		[ImplementPropertyType("category2Image")]
-		public IPublishedContent Category2Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("category2Image"); }
-		}
-
-		///<summary>
-		/// category 2 name
-		///</summary>
-		[ImplementPropertyType("category2Name")]
-		public string Category2Name
-		{
-			get { return this.GetPropertyValue<string>("category2Name"); }
-		}
-
-		///<summary>
-		/// category 3 image
-		///</summary>
-		[ImplementPropertyType("category3Image")]
-		public IPublishedContent Category3Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("category3Image"); }
-		}
-
-		///<summary>
-		/// category 3 name
-		///</summary>
-		[ImplementPropertyType("category3Name")]
-		public string Category3Name
-		{
-			get { return this.GetPropertyValue<string>("category3Name"); }
-		}
-
-		///<summary>
-		/// description category
-		///</summary>
-		[ImplementPropertyType("descriptionCategory")]
-		public string DescriptionCategory
-		{
-			get { return this.GetPropertyValue<string>("descriptionCategory"); }
-		}
-
-		///<summary>
-		/// title category
-		///</summary>
-		[ImplementPropertyType("titleCategory")]
-		public string TitleCategory
-		{
-			get { return this.GetPropertyValue<string>("titleCategory"); }
+			get { return this.GetPropertyValue<string>("homeSection2Title"); }
 		}
 	}
 
@@ -496,12 +343,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// section content management
+		/// placeholder temp
 		///</summary>
-		[ImplementPropertyType("sectionContentManagement")]
-		public IEnumerable<IPublishedContent> SectionContentManagement
+		[ImplementPropertyType("placeholderTemp")]
+		public string PlaceholderTemp
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("sectionContentManagement"); }
+			get { return this.GetPropertyValue<string>("placeholderTemp"); }
 		}
 	}
 
@@ -531,156 +378,21 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// description feature
+		/// home section 3 description
 		///</summary>
-		[ImplementPropertyType("descriptionFeature")]
-		public string DescriptionFeature
+		[ImplementPropertyType("homeSection3Description")]
+		public string HomeSection3Description
 		{
-			get { return this.GetPropertyValue<string>("descriptionFeature"); }
+			get { return this.GetPropertyValue<string>("homeSection3Description"); }
 		}
 
 		///<summary>
-		/// feature 1 description
+		/// home section 3 title
 		///</summary>
-		[ImplementPropertyType("feature1Description")]
-		public string Feature1Description
+		[ImplementPropertyType("homeSection3Title")]
+		public string HomeSection3Title
 		{
-			get { return this.GetPropertyValue<string>("feature1Description"); }
-		}
-
-		///<summary>
-		/// feature 1 image
-		///</summary>
-		[ImplementPropertyType("feature1Image")]
-		public IPublishedContent Feature1Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("feature1Image"); }
-		}
-
-		///<summary>
-		/// feature 1 name
-		///</summary>
-		[ImplementPropertyType("feature1Name")]
-		public string Feature1Name
-		{
-			get { return this.GetPropertyValue<string>("feature1Name"); }
-		}
-
-		///<summary>
-		/// feature 1 price
-		///</summary>
-		[ImplementPropertyType("feature1Price")]
-		public string Feature1Price
-		{
-			get { return this.GetPropertyValue<string>("feature1Price"); }
-		}
-
-		///<summary>
-		/// feature 1 review
-		///</summary>
-		[ImplementPropertyType("feature1Review")]
-		public string Feature1Review
-		{
-			get { return this.GetPropertyValue<string>("feature1Review"); }
-		}
-
-		///<summary>
-		/// feature 2 description
-		///</summary>
-		[ImplementPropertyType("feature2Description")]
-		public string Feature2Description
-		{
-			get { return this.GetPropertyValue<string>("feature2Description"); }
-		}
-
-		///<summary>
-		/// feature 2 image
-		///</summary>
-		[ImplementPropertyType("feature2Image")]
-		public IPublishedContent Feature2Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("feature2Image"); }
-		}
-
-		///<summary>
-		/// feature 2 name
-		///</summary>
-		[ImplementPropertyType("feature2Name")]
-		public string Feature2Name
-		{
-			get { return this.GetPropertyValue<string>("feature2Name"); }
-		}
-
-		///<summary>
-		/// feature 2 price
-		///</summary>
-		[ImplementPropertyType("feature2Price")]
-		public string Feature2Price
-		{
-			get { return this.GetPropertyValue<string>("feature2Price"); }
-		}
-
-		///<summary>
-		/// feature 2 review
-		///</summary>
-		[ImplementPropertyType("feature2Review")]
-		public string Feature2Review
-		{
-			get { return this.GetPropertyValue<string>("feature2Review"); }
-		}
-
-		///<summary>
-		/// feature 3 description
-		///</summary>
-		[ImplementPropertyType("feature3Description")]
-		public string Feature3Description
-		{
-			get { return this.GetPropertyValue<string>("feature3Description"); }
-		}
-
-		///<summary>
-		/// feature 3 image
-		///</summary>
-		[ImplementPropertyType("feature3Image")]
-		public IPublishedContent Feature3Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("feature3Image"); }
-		}
-
-		///<summary>
-		/// feature 3 name
-		///</summary>
-		[ImplementPropertyType("feature3Name")]
-		public string Feature3Name
-		{
-			get { return this.GetPropertyValue<string>("feature3Name"); }
-		}
-
-		///<summary>
-		/// feature 3 price
-		///</summary>
-		[ImplementPropertyType("feature3Price")]
-		public string Feature3Price
-		{
-			get { return this.GetPropertyValue<string>("feature3Price"); }
-		}
-
-		///<summary>
-		/// feature 3 review
-		///</summary>
-		[ImplementPropertyType("feature3Review")]
-		public string Feature3Review
-		{
-			get { return this.GetPropertyValue<string>("feature3Review"); }
-		}
-
-		///<summary>
-		/// title feature
-		///</summary>
-		[ImplementPropertyType("titleFeature")]
-		public string TitleFeature
-		{
-			get { return this.GetPropertyValue<string>("titleFeature"); }
+			get { return this.GetPropertyValue<string>("homeSection3Title"); }
 		}
 	}
 
@@ -823,6 +535,370 @@ namespace Umbraco.Web.PublishedContentModels
 		public IPublishedContent FormImage
 		{
 			get { return this.GetPropertyValue<IPublishedContent>("formImage"); }
+		}
+	}
+
+	/// <summary>Home Page Banner</summary>
+	[PublishedContentModel("homePageBanner")]
+	public partial class HomePageBanner : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageBanner";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageBanner(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageBanner, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// banner description
+		///</summary>
+		[ImplementPropertyType("bannerDescription")]
+		public IHtmlString BannerDescription
+		{
+			get { return this.GetPropertyValue<IHtmlString>("bannerDescription"); }
+		}
+
+		///<summary>
+		/// banner image
+		///</summary>
+		[ImplementPropertyType("bannerImage")]
+		public IPublishedContent BannerImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("bannerImage"); }
+		}
+
+		///<summary>
+		/// banner subtitle
+		///</summary>
+		[ImplementPropertyType("bannerSubtitle")]
+		public string BannerSubtitle
+		{
+			get { return this.GetPropertyValue<string>("bannerSubtitle"); }
+		}
+
+		///<summary>
+		/// banner title
+		///</summary>
+		[ImplementPropertyType("bannerTitle")]
+		public string BannerTitle
+		{
+			get { return this.GetPropertyValue<string>("bannerTitle"); }
+		}
+	}
+
+	/// <summary>Home Page Product</summary>
+	[PublishedContentModel("homePageProduct")]
+	public partial class HomePageProduct : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageProduct";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageProduct(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageProduct, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// product image
+		///</summary>
+		[ImplementPropertyType("productImage")]
+		public IPublishedContent ProductImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("productImage"); }
+		}
+
+		///<summary>
+		/// product name
+		///</summary>
+		[ImplementPropertyType("productName")]
+		public string ProductName
+		{
+			get { return this.GetPropertyValue<string>("productName"); }
+		}
+	}
+
+	/// <summary>Home Page Feature</summary>
+	[PublishedContentModel("homePageFeature")]
+	public partial class HomePageFeature : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageFeature";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageFeature(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageFeature, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// feature description
+		///</summary>
+		[ImplementPropertyType("featureDescription")]
+		public string FeatureDescription
+		{
+			get { return this.GetPropertyValue<string>("featureDescription"); }
+		}
+
+		///<summary>
+		/// feature image
+		///</summary>
+		[ImplementPropertyType("featureImage")]
+		public IPublishedContent FeatureImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("featureImage"); }
+		}
+
+		///<summary>
+		/// feature name
+		///</summary>
+		[ImplementPropertyType("featureName")]
+		public string FeatureName
+		{
+			get { return this.GetPropertyValue<string>("featureName"); }
+		}
+
+		///<summary>
+		/// feature price
+		///</summary>
+		[ImplementPropertyType("featurePrice")]
+		public string FeaturePrice
+		{
+			get { return this.GetPropertyValue<string>("featurePrice"); }
+		}
+
+		///<summary>
+		/// feature review
+		///</summary>
+		[ImplementPropertyType("featureReview")]
+		public string FeatureReview
+		{
+			get { return this.GetPropertyValue<string>("featureReview"); }
+		}
+	}
+
+	/// <summary>Home Page Section4</summary>
+	[PublishedContentModel("homePageSection4")]
+	public partial class HomePageSection4 : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageSection4";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageSection4(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageSection4, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// home section 4 description
+		///</summary>
+		[ImplementPropertyType("homeSection4Description")]
+		public string HomeSection4Description
+		{
+			get { return this.GetPropertyValue<string>("homeSection4Description"); }
+		}
+
+		///<summary>
+		/// home section 4 header
+		///</summary>
+		[ImplementPropertyType("homeSection4Header")]
+		public string HomeSection4Header
+		{
+			get { return this.GetPropertyValue<string>("homeSection4Header"); }
+		}
+
+		///<summary>
+		/// home section 4 title
+		///</summary>
+		[ImplementPropertyType("homeSection4Title")]
+		public string HomeSection4Title
+		{
+			get { return this.GetPropertyValue<string>("homeSection4Title"); }
+		}
+
+		///<summary>
+		/// home section 4 title expand
+		///</summary>
+		[ImplementPropertyType("homeSection4TitleExpand")]
+		public string HomeSection4TitleExpand
+		{
+			get { return this.GetPropertyValue<string>("homeSection4TitleExpand"); }
+		}
+	}
+
+	/// <summary>Home Page Plan</summary>
+	[PublishedContentModel("homePagePlan")]
+	public partial class HomePagePlan : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePagePlan";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePagePlan(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePagePlan, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// plan advance 1 content
+		///</summary>
+		[ImplementPropertyType("planAdvance1Content")]
+		public string PlanAdvance1Content
+		{
+			get { return this.GetPropertyValue<string>("planAdvance1Content"); }
+		}
+
+		///<summary>
+		/// plan advance 1 title
+		///</summary>
+		[ImplementPropertyType("planAdvance1Title")]
+		public string PlanAdvance1Title
+		{
+			get { return this.GetPropertyValue<string>("planAdvance1Title"); }
+		}
+
+		///<summary>
+		/// plan advance 2 content
+		///</summary>
+		[ImplementPropertyType("planAdvance2Content")]
+		public string PlanAdvance2Content
+		{
+			get { return this.GetPropertyValue<string>("planAdvance2Content"); }
+		}
+
+		///<summary>
+		/// plan advance 2 title
+		///</summary>
+		[ImplementPropertyType("planAdvance2Title")]
+		public string PlanAdvance2Title
+		{
+			get { return this.GetPropertyValue<string>("planAdvance2Title"); }
+		}
+
+		///<summary>
+		/// plan advance 3 content
+		///</summary>
+		[ImplementPropertyType("planAdvance3Content")]
+		public string PlanAdvance3Content
+		{
+			get { return this.GetPropertyValue<string>("planAdvance3Content"); }
+		}
+
+		///<summary>
+		/// plan advance 3 title
+		///</summary>
+		[ImplementPropertyType("planAdvance3Title")]
+		public string PlanAdvance3Title
+		{
+			get { return this.GetPropertyValue<string>("planAdvance3Title"); }
+		}
+
+		///<summary>
+		/// plan benefit list
+		///</summary>
+		[ImplementPropertyType("planBenefitList")]
+		public IEnumerable<string> PlanBenefitList
+		{
+			get { return this.GetPropertyValue<IEnumerable<string>>("planBenefitList"); }
+		}
+
+		///<summary>
+		/// plan image
+		///</summary>
+		[ImplementPropertyType("planImage")]
+		public IPublishedContent PlanImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("planImage"); }
+		}
+
+		///<summary>
+		/// plan name
+		///</summary>
+		[ImplementPropertyType("planName")]
+		public string PlanName
+		{
+			get { return this.GetPropertyValue<string>("planName"); }
+		}
+
+		///<summary>
+		/// plan summary
+		///</summary>
+		[ImplementPropertyType("planSummary")]
+		public string PlanSummary
+		{
+			get { return this.GetPropertyValue<string>("planSummary"); }
+		}
+
+		///<summary>
+		/// plan title
+		///</summary>
+		[ImplementPropertyType("planTitle")]
+		public string PlanTitle
+		{
+			get { return this.GetPropertyValue<string>("planTitle"); }
 		}
 	}
 

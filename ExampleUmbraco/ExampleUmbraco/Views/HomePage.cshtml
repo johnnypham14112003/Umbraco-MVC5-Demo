@@ -1,16 +1,28 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using Umbraco.Web.Models
-@using Newtonsoft.Json.Linq
 @{
     Layout = "Layout.cshtml";
     
-     var nestedItems = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("sectionContentManagement");
+    // Query all child node data
+    var sections = Model.Content.Children.Where(x => x.IsVisible());
 }
 
-@if (nestedItems != null && nestedItems.Any())
+@foreach (var section in sections)
 {
-    foreach (var item in nestedItems)
+    switch (section.DocumentTypeAlias)
     {
-        @Html.Partial("~/Views/Partials/HomePageNested/" + item.DocumentTypeAlias + ".cshtml", item)
+        case "homePageSection1":
+            @Html.Partial("HomePageNested/HomePageSection1", section)
+            break;
+            
+        case "homePageSection2":
+            @Html.Partial("HomePageNested/HomePageSection2", section)
+            break;
+            
+        case "homePageSection3":
+            @Html.Partial("HomePageNested/HomePageSection3", section)
+            break;
+        case "homePageSection4":
+            @Html.Partial("HomePageNested/HomePageSection4", section)
+            break;
     }
 }
