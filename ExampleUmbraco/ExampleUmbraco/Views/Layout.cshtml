@@ -2,6 +2,29 @@
 @using Umbraco.Web.Models
 @using Newtonsoft.Json.Linq
 @{
+    // Get current url path
+    string currentPath = Request.Url.AbsolutePath;
+    
+    // Handle english url
+    string enUrl = currentPath;
+    if (enUrl.StartsWith("/vi/", StringComparison.OrdinalIgnoreCase))
+    {
+        enUrl = enUrl.Substring(3); 
+    }
+    else if (enUrl.Equals("/vi", StringComparison.OrdinalIgnoreCase))
+    {
+        enUrl = "/";
+    }
+    if (string.IsNullOrEmpty(enUrl)) { enUrl = "/"; }
+
+    // Handle vietnamese url
+    string viUrl = currentPath;
+    if (!viUrl.StartsWith("/vi/", StringComparison.OrdinalIgnoreCase) && !viUrl.Equals("/vi", StringComparison.OrdinalIgnoreCase))
+    {
+        viUrl = viUrl == "/" ? "/vi" : "/vi" + viUrl;
+    }
+    
+    // ================================================================================
     // Get data content directly on a node without depend on CurrentPage node
     var nodeLayoutContent = Umbraco.TypedContentAtRoot()
                                    .FirstOrDefault(x => x.DocumentTypeAlias == "layoutDeclaration");
@@ -21,6 +44,7 @@
     var listOthersRefRaw = (otherProp != null && otherProp.DataValue != null) ? otherProp.DataValue.ToString() : "";
     JArray otherArray = !string.IsNullOrWhiteSpace(listOthersRefRaw) ? JArray.Parse(listOthersRefRaw) : new JArray();
     
+    // Declare alias Document Type
     string tabTitle = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("tabTitle") : "";
     string mailTo = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("mailTo") : "";
     string telephone = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("telephone") : "";
@@ -131,6 +155,17 @@
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
                 </div>
+            </div>
+            
+            <div class="language-switcher" style="margin-left:10px">
+                <select onchange="location = this.value;" class="form-select form-select-sm" style="width: auto; display: inline-block;">
+                    <option value="@viUrl" @(currentPath.StartsWith("/vi") ? "selected" : "")>
+                        vi - Tiếng Việt
+                    </option>
+                    <option value="@enUrl" @(!currentPath.StartsWith("/vi") ? "selected" : "")>
+                        en - English
+                    </option>
+                </select>
             </div>
 
         </div>

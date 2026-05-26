@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "b842bc40cdaee548")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "9ba865521d27a23c")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.7")]
 
 
 // FILE: models.generated.cs
@@ -93,7 +93,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// list-navigators
+		/// list navigators
 		///</summary>
 		[ImplementPropertyType("listNavigators")]
 		public Umbraco.Web.Models.RelatedLinks ListNavigators
@@ -238,18 +238,18 @@ namespace Umbraco.Web.PublishedContentModels
 		/// home section 2 description
 		///</summary>
 		[ImplementPropertyType("homeSection2Description")]
-		public string HomeSection2Description
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection2Description
 		{
-			get { return this.GetPropertyValue<string>("homeSection2Description"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection2Description"); }
 		}
 
 		///<summary>
 		/// home section 2 title
 		///</summary>
 		[ImplementPropertyType("homeSection2Title")]
-		public string HomeSection2Title
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection2Title
 		{
-			get { return this.GetPropertyValue<string>("homeSection2Title"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection2Title"); }
 		}
 	}
 
@@ -397,18 +397,18 @@ namespace Umbraco.Web.PublishedContentModels
 		/// home section 3 description
 		///</summary>
 		[ImplementPropertyType("homeSection3Description")]
-		public string HomeSection3Description
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection3Description
 		{
-			get { return this.GetPropertyValue<string>("homeSection3Description"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection3Description"); }
 		}
 
 		///<summary>
 		/// home section 3 title
 		///</summary>
 		[ImplementPropertyType("homeSection3Title")]
-		public string HomeSection3Title
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection3Title
 		{
-			get { return this.GetPropertyValue<string>("homeSection3Title"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection3Title"); }
 		}
 	}
 
@@ -441,9 +441,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// aboutpage brand description
 		///</summary>
 		[ImplementPropertyType("aboutpageBrandDescription")]
-		public string AboutpageBrandDescription
+		public Our.Umbraco.Vorto.Models.VortoValue<string> AboutpageBrandDescription
 		{
-			get { return this.GetPropertyValue<string>("aboutpageBrandDescription"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("aboutpageBrandDescription"); }
 		}
 
 		///<summary>
@@ -459,18 +459,18 @@ namespace Umbraco.Web.PublishedContentModels
 		/// aboutpage brand title
 		///</summary>
 		[ImplementPropertyType("aboutpageBrandTitle")]
-		public string AboutpageBrandTitle
+		public Our.Umbraco.Vorto.Models.VortoValue<string> AboutpageBrandTitle
 		{
-			get { return this.GetPropertyValue<string>("aboutpageBrandTitle"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("aboutpageBrandTitle"); }
 		}
 
 		///<summary>
 		/// aboutpage description
 		///</summary>
 		[ImplementPropertyType("aboutpageDescription")]
-		public string AboutpageDescription
+		public Our.Umbraco.Vorto.Models.VortoValue<string> AboutpageDescription
 		{
-			get { return this.GetPropertyValue<string>("aboutpageDescription"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("aboutpageDescription"); }
 		}
 
 		///<summary>
@@ -486,36 +486,36 @@ namespace Umbraco.Web.PublishedContentModels
 		/// aboutpage service description
 		///</summary>
 		[ImplementPropertyType("aboutpageServiceDescription")]
-		public string AboutpageServiceDescription
+		public Our.Umbraco.Vorto.Models.VortoValue<string> AboutpageServiceDescription
 		{
-			get { return this.GetPropertyValue<string>("aboutpageServiceDescription"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("aboutpageServiceDescription"); }
 		}
 
 		///<summary>
 		/// aboutpage service list
 		///</summary>
 		[ImplementPropertyType("aboutpageServiceList")]
-		public IEnumerable<string> AboutpageServiceList
+		public Our.Umbraco.Vorto.Models.VortoValue<IEnumerable<string>> AboutpageServiceList
 		{
-			get { return this.GetPropertyValue<IEnumerable<string>>("aboutpageServiceList"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<IEnumerable<string>>>("aboutpageServiceList"); }
 		}
 
 		///<summary>
 		/// aboutpage service title
 		///</summary>
 		[ImplementPropertyType("aboutpageServiceTitle")]
-		public string AboutpageServiceTitle
+		public Our.Umbraco.Vorto.Models.VortoValue<string> AboutpageServiceTitle
 		{
-			get { return this.GetPropertyValue<string>("aboutpageServiceTitle"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("aboutpageServiceTitle"); }
 		}
 
 		///<summary>
 		/// aboutpage title
 		///</summary>
 		[ImplementPropertyType("aboutpageTitle")]
-		public string AboutpageTitle
+		public Our.Umbraco.Vorto.Models.VortoValue<string> AboutpageTitle
 		{
-			get { return this.GetPropertyValue<string>("aboutpageTitle"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("aboutpageTitle"); }
 		}
 	}
 
@@ -580,15 +580,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// banner description
-		///</summary>
-		[ImplementPropertyType("bannerDescription")]
-		public IHtmlString BannerDescription
-		{
-			get { return this.GetPropertyValue<IHtmlString>("bannerDescription"); }
-		}
-
-		///<summary>
 		/// banner image
 		///</summary>
 		[ImplementPropertyType("bannerImage")]
@@ -601,18 +592,27 @@ namespace Umbraco.Web.PublishedContentModels
 		/// banner subtitle
 		///</summary>
 		[ImplementPropertyType("bannerSubtitle")]
-		public string BannerSubtitle
+		public Our.Umbraco.Vorto.Models.VortoValue<string> BannerSubtitle
 		{
-			get { return this.GetPropertyValue<string>("bannerSubtitle"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("bannerSubtitle"); }
+		}
+
+		///<summary>
+		/// banner summary
+		///</summary>
+		[ImplementPropertyType("bannerSummary")]
+		public Our.Umbraco.Vorto.Models.VortoValue<string> BannerSummary
+		{
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("bannerSummary"); }
 		}
 
 		///<summary>
 		/// banner title
 		///</summary>
 		[ImplementPropertyType("bannerTitle")]
-		public string BannerTitle
+		public Our.Umbraco.Vorto.Models.VortoValue<string> BannerTitle
 		{
-			get { return this.GetPropertyValue<string>("bannerTitle"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("bannerTitle"); }
 		}
 	}
 
@@ -654,9 +654,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// product name
 		///</summary>
 		[ImplementPropertyType("productName")]
-		public string ProductName
+		public Our.Umbraco.Vorto.Models.VortoValue<string> ProductName
 		{
-			get { return this.GetPropertyValue<string>("productName"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("productName"); }
 		}
 	}
 
@@ -689,9 +689,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// feature description
 		///</summary>
 		[ImplementPropertyType("featureDescription")]
-		public string FeatureDescription
+		public Our.Umbraco.Vorto.Models.VortoValue<string> FeatureDescription
 		{
-			get { return this.GetPropertyValue<string>("featureDescription"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("featureDescription"); }
 		}
 
 		///<summary>
@@ -707,27 +707,27 @@ namespace Umbraco.Web.PublishedContentModels
 		/// feature name
 		///</summary>
 		[ImplementPropertyType("featureName")]
-		public string FeatureName
+		public Our.Umbraco.Vorto.Models.VortoValue<string> FeatureName
 		{
-			get { return this.GetPropertyValue<string>("featureName"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("featureName"); }
 		}
 
 		///<summary>
 		/// feature price
 		///</summary>
 		[ImplementPropertyType("featurePrice")]
-		public string FeaturePrice
+		public Our.Umbraco.Vorto.Models.VortoValue<string> FeaturePrice
 		{
-			get { return this.GetPropertyValue<string>("featurePrice"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("featurePrice"); }
 		}
 
 		///<summary>
 		/// feature review
 		///</summary>
 		[ImplementPropertyType("featureReview")]
-		public string FeatureReview
+		public Our.Umbraco.Vorto.Models.VortoValue<string> FeatureReview
 		{
-			get { return this.GetPropertyValue<string>("featureReview"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("featureReview"); }
 		}
 	}
 
@@ -760,36 +760,36 @@ namespace Umbraco.Web.PublishedContentModels
 		/// home section 4 description
 		///</summary>
 		[ImplementPropertyType("homeSection4Description")]
-		public string HomeSection4Description
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection4Description
 		{
-			get { return this.GetPropertyValue<string>("homeSection4Description"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection4Description"); }
 		}
 
 		///<summary>
 		/// home section 4 header
 		///</summary>
 		[ImplementPropertyType("homeSection4Header")]
-		public string HomeSection4Header
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection4Header
 		{
-			get { return this.GetPropertyValue<string>("homeSection4Header"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection4Header"); }
 		}
 
 		///<summary>
 		/// home section 4 title
 		///</summary>
 		[ImplementPropertyType("homeSection4Title")]
-		public string HomeSection4Title
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection4Title
 		{
-			get { return this.GetPropertyValue<string>("homeSection4Title"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection4Title"); }
 		}
 
 		///<summary>
 		/// home section 4 title expand
 		///</summary>
 		[ImplementPropertyType("homeSection4TitleExpand")]
-		public string HomeSection4TitleExpand
+		public Our.Umbraco.Vorto.Models.VortoValue<string> HomeSection4TitleExpand
 		{
-			get { return this.GetPropertyValue<string>("homeSection4TitleExpand"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("homeSection4TitleExpand"); }
 		}
 	}
 
@@ -822,63 +822,63 @@ namespace Umbraco.Web.PublishedContentModels
 		/// plan advance 1 content
 		///</summary>
 		[ImplementPropertyType("planAdvance1Content")]
-		public string PlanAdvance1Content
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanAdvance1Content
 		{
-			get { return this.GetPropertyValue<string>("planAdvance1Content"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planAdvance1Content"); }
 		}
 
 		///<summary>
 		/// plan advance 1 title
 		///</summary>
 		[ImplementPropertyType("planAdvance1Title")]
-		public string PlanAdvance1Title
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanAdvance1Title
 		{
-			get { return this.GetPropertyValue<string>("planAdvance1Title"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planAdvance1Title"); }
 		}
 
 		///<summary>
 		/// plan advance 2 content
 		///</summary>
 		[ImplementPropertyType("planAdvance2Content")]
-		public string PlanAdvance2Content
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanAdvance2Content
 		{
-			get { return this.GetPropertyValue<string>("planAdvance2Content"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planAdvance2Content"); }
 		}
 
 		///<summary>
 		/// plan advance 2 title
 		///</summary>
 		[ImplementPropertyType("planAdvance2Title")]
-		public string PlanAdvance2Title
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanAdvance2Title
 		{
-			get { return this.GetPropertyValue<string>("planAdvance2Title"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planAdvance2Title"); }
 		}
 
 		///<summary>
 		/// plan advance 3 content
 		///</summary>
 		[ImplementPropertyType("planAdvance3Content")]
-		public string PlanAdvance3Content
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanAdvance3Content
 		{
-			get { return this.GetPropertyValue<string>("planAdvance3Content"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planAdvance3Content"); }
 		}
 
 		///<summary>
 		/// plan advance 3 title
 		///</summary>
 		[ImplementPropertyType("planAdvance3Title")]
-		public string PlanAdvance3Title
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanAdvance3Title
 		{
-			get { return this.GetPropertyValue<string>("planAdvance3Title"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planAdvance3Title"); }
 		}
 
 		///<summary>
 		/// plan benefit list
 		///</summary>
 		[ImplementPropertyType("planBenefitList")]
-		public IEnumerable<string> PlanBenefitList
+		public Our.Umbraco.Vorto.Models.VortoValue<IEnumerable<string>> PlanBenefitList
 		{
-			get { return this.GetPropertyValue<IEnumerable<string>>("planBenefitList"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<IEnumerable<string>>>("planBenefitList"); }
 		}
 
 		///<summary>
@@ -894,27 +894,27 @@ namespace Umbraco.Web.PublishedContentModels
 		/// plan name
 		///</summary>
 		[ImplementPropertyType("planName")]
-		public string PlanName
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanName
 		{
-			get { return this.GetPropertyValue<string>("planName"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planName"); }
 		}
 
 		///<summary>
 		/// plan summary
 		///</summary>
 		[ImplementPropertyType("planSummary")]
-		public string PlanSummary
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanSummary
 		{
-			get { return this.GetPropertyValue<string>("planSummary"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planSummary"); }
 		}
 
 		///<summary>
 		/// plan title
 		///</summary>
 		[ImplementPropertyType("planTitle")]
-		public string PlanTitle
+		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanTitle
 		{
-			get { return this.GetPropertyValue<string>("planTitle"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planTitle"); }
 		}
 	}
 

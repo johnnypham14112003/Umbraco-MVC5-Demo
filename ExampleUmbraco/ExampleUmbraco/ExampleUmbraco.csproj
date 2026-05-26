@@ -150,6 +150,9 @@
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Our.Umbraco.Vorto, Version=1.7.6988.17711, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Our.Umbraco.Vorto.1.7.1\lib\net45\Our.Umbraco.Vorto.dll</HintPath>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -262,6 +265,15 @@
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
+    <Content Include="App_Plugins\Vorto\css\vorto.css" />
+    <Content Include="App_Plugins\Vorto\js\jquery.hoverIntent.minified.js" />
+    <Content Include="App_Plugins\Vorto\js\vorto.js" />
+    <Content Include="App_Plugins\Vorto\views\vorto.html" />
+    <Content Include="App_Plugins\Vorto\views\vorto.languagePicker.html" />
+    <Content Include="App_Plugins\Vorto\views\vorto.languageSourceRadioList.html" />
+    <Content Include="App_Plugins\Vorto\views\vorto.mandatoryBehaviourPicker.html" />
+    <Content Include="App_Plugins\Vorto\views\vorto.propertyEditorPicker.html" />
+    <Content Include="App_Plugins\Vorto\views\vorto.rtlBehaviourPicker.html" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -344,6 +356,7 @@
     <Content Include="Views\Partials\HomePageNested\HomePageSection3.cshtml" />
     <Content Include="Views\Partials\_LoginForm.cshtml" />
     <Content Include="Views\LoginPage.cshtml" />
+    <Content Include="Views\Partials\HomePageNested\HomePageSection4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

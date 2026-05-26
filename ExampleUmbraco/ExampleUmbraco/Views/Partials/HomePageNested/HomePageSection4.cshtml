@@ -1,4 +1,5 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<IPublishedContent>
+@using Our.Umbraco.Vorto.Extensions
 @{
     // Query all child node data
     var planItems = Model.Content.Children.Where(x => x.IsVisible()).ToList();
@@ -11,16 +12,16 @@
         <div class="row mb-5">
             <div class="col-12">
                 <p class="text-uppercase mb-3" style="color: #c49a5b; font-size: 0.7rem; letter-spacing: 1.5px; font-weight: 600;">
-                    @Umbraco.Field("homeSection4Header")
+                    @Model.Content.GetVortoValue("homeSection4Header")
                 </p>
                 <h1 class="mb-4" style="font-family: 'Playfair Display', serif; font-size: 2.8rem; line-height: 1.2; color: #000;">
-                    @Umbraco.Field("homeSection4Title")&nbsp;—&nbsp;
+                    @Model.Content.GetVortoValue("homeSection4Title")&nbsp;—&nbsp;
                     <span class="fst-italic" style="color: #c49a5b;">
-                        @Umbraco.Field("homeSection4TitleExpand")
+                        @Model.Content.GetVortoValue("homeSection4TitleExpand")
                     </span>
                 </h1>
                 <p style="font-size: 0.95rem; max-width: 650px; line-height: 1.6;">
-                    @Umbraco.Field("homeSection4Description")
+                    @Model.Content.GetVortoValue("homeSection4Description")
                 </p>
             </div>
         </div>
@@ -28,18 +29,18 @@
         <div class="row g-4">
             @foreach(var item in planItems)
             {
-                var benefitList = item.GetPropertyValue<IEnumerable<string>>("planBenefitList");
+                var benefitList = item.GetVortoValue<IEnumerable<string>>("planBenefitList");
                 var planImg = item.GetPropertyValue<IPublishedContent>("planImage");
                 
-                var planName = item.GetPropertyValue<string>("planName");
-                var planTitle = item.GetPropertyValue<string>("planTitle");
-                var planSummary = item.GetPropertyValue<string>("planSummary");
-                var planAdvance1Title = item.GetPropertyValue<string>("planAdvance1Title");
-                var planAdvance1Content = item.GetPropertyValue<string>("planAdvance1Content");
-                var planAdvance2Title = item.GetPropertyValue<string>("planAdvance2Title");
-                var planAdvance2Content = item.GetPropertyValue<string>("planAdvance2Content");
-                var planAdvance3Title = item.GetPropertyValue<string>("planAdvance3Title");
-                var planAdvance3Content = item.GetPropertyValue<string>("planAdvance3Content");
+                var planName = item.GetVortoValue<string>("planName");
+                var planTitle = item.GetVortoValue<string>("planTitle");
+                var planSummary = item.GetVortoValue<string>("planSummary");
+                var planAdvance1Title = item.GetVortoValue<string>("planAdvance1Title");
+                var planAdvance1Content = item.GetVortoValue<string>("planAdvance1Content");
+                var planAdvance2Title = item.GetVortoValue<string>("planAdvance2Title");
+                var planAdvance2Content = item.GetVortoValue<string>("planAdvance2Content");
+                var planAdvance3Title = item.GetVortoValue<string>("planAdvance3Title");
+                var planAdvance3Content = item.GetVortoValue<string>("planAdvance3Content");
 
                 <div class="col-md-4">
                     <div class="card border-0 rounded-0 h-100 shadow-sm d-flex flex-column" style="background-color: #fff;">
@@ -75,7 +76,7 @@
                                     foreach (var benefit in benefitList)
                                     {
                                         <li class="d-flex align-items-start mb-2" style="font-size: 0.8rem; line-height: 1.5;">
-                                            <span class="me-2" style="color: #000; font-size: 0.8rem;">&#10003;</span>
+                                            <span class="me-2" style="color: #c49a5b;; font-size: 0.8rem;">&#10003;</span>
                                             <span>@benefit</span>
                                         </li>
                                     }
@@ -87,15 +88,15 @@
                             <div class="d-flex justify-content-between align-items-end w-100">
                                 <div class="d-flex flex-column">
                                     <span class="mb-1" style="font-size: 1.2rem; color: #000; font-family: 'Playfair Display', serif; line-height: 1;">@planAdvance1Content</span>
-                                    <span class="text-uppercase" style="font-size: 0.6rem; letter-spacing: 1px; line-height: 1.2;">@Html.Raw(planAdvance1Title)</span>
+                                    <span class="text-uppercase" style="font-size: 0.6rem; letter-spacing: 1px; line-height: 1.2;">@planAdvance1Title</span>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <span class="mb-1" style="font-size: 1.2rem; color: #000; font-family: 'Playfair Display', serif; line-height: 1;">@planAdvance2Content</span>
-                                    <span class="text-uppercase" style="font-size: 0.6rem; letter-spacing: 1px; line-height: 1.2;">@Html.Raw(planAdvance2Title)</span>
+                                    <span class="text-uppercase" style="font-size: 0.6rem; letter-spacing: 1px; line-height: 1.2;">@planAdvance2Title</span>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <span class="mb-1" style="font-size: 1.2rem; color: #000; font-family: 'Playfair Display', serif; line-height: 1;">@planAdvance3Content</span>
-                                    <span class="text-uppercase" style="font-size: 0.6rem; letter-spacing: 1px; line-height: 1.2;">@Html.Raw(planAdvance3Title)</span>
+                                    <span class="text-uppercase" style="font-size: 0.6rem; letter-spacing: 1px; line-height: 1.2;">@planAdvance3Title</span>
                                 </div>
                             </div>
 
