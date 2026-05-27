@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "9ba865521d27a23c")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.7")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "d64b449f9df9ba88")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
 
 
 // FILE: models.generated.cs
@@ -731,7 +731,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
-	/// <summary>Home Page Section4</summary>
+	/// <summary>Home Page Section 4</summary>
 	[PublishedContentModel("homePageSection4")]
 	public partial class HomePageSection4 : PublishedContentModel
 	{
@@ -915,6 +915,41 @@ namespace Umbraco.Web.PublishedContentModels
 		public Our.Umbraco.Vorto.Models.VortoValue<string> PlanTitle
 		{
 			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("planTitle"); }
+		}
+	}
+
+	/// <summary>Home Page Body</summary>
+	[PublishedContentModel("homePageBody")]
+	public partial class HomePageBody : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageBody";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageBody(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageBody, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// placeholder Temp
+		///</summary>
+		[ImplementPropertyType("placeholderTemp")]
+		public string PlaceholderTemp
+		{
+			get { return this.GetPropertyValue<string>("placeholderTemp"); }
 		}
 	}
 

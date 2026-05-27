@@ -2,27 +2,25 @@
 @{
     Layout = "Layout.cshtml";
     
+    const string sectionsFolder = "HomePageBody";
+    
     // Query all child node data
-    var sections = Model.Content.Children.Where(x => x.IsVisible());
+    var bodyNode = Model.Content.Children.FirstOrDefault(x => x.DocumentTypeAlias == "homePageBody");
+    var sections = bodyNode != null 
+                   ? bodyNode.Children.Where(x => x.IsVisible()) 
+                   : Enumerable.Empty<Umbraco.Core.Models.IPublishedContent>();
 }
 
 @foreach (var section in sections)
 {
-    switch (section.DocumentTypeAlias)
+    // Combine path
+    string partialPath = sectionsFolder + "/" + section.DocumentTypeAlias;
+    
+    // Check exist
+    var viewEngineResult = ViewEngines.Engines.FindPartialView(Html.ViewContext, partialPath);
+    
+    if (viewEngineResult.View != null)
     {
-        case "homePageSection1":
-            @Html.Partial("HomePageNested/HomePageSection1", section)
-            break;
-            
-        case "homePageSection2":
-            @Html.Partial("HomePageNested/HomePageSection2", section)
-            break;
-            
-        case "homePageSection3":
-            @Html.Partial("HomePageNested/HomePageSection3", section)
-            break;
-        case "homePageSection4":
-            @Html.Partial("HomePageNested/HomePageSection4", section)
-            break;
+        @Html.Partial(partialPath, section)
     }
 }
