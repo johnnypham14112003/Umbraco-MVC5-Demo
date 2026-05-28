@@ -8,7 +8,6 @@
     // For read param type from URL
     string viewType = Request.QueryString["type"];
 
-    var motors = ViewBag.MotorList as IEnumerable<MotorViewModel>;
     bool isMotor = true;
 
     if (!string.IsNullOrEmpty(viewType) && viewType.ToLower() == "clothes")
@@ -28,55 +27,63 @@
 }
 <style>
     .showroom-header {
-    background-color: #111;
-    color: white;
-    padding: 50px 0;
-    margin-bottom: 40px;
-    text-align: center;
-    border-bottom: 5px solid #FF0000;
+        background-color: #111;
+        color: white;
+        padding: 50px 0;
+        margin-bottom: 40px;
+        text-align: center;
+        border-bottom: 5px solid #FF0000;
     }
+
     .motor-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 8px;
-    overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 8px;
+        overflow: hidden;
     }
-    .motor-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
-    }
+
+        .motor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+        }
+
     .motor-img-container {
-    height: 250px;
-    background-color: #e5e5e5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
+        height: 250px;
+        background-color: #e5e5e5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
     }
-    .motor-img-container img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    }
+
+        .motor-img-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
     .motor-name {
-    font-weight: 800;
-    letter-spacing: 1px;
-    font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+        font-size: 1.4rem;
     }
+
     .motor-price {
-    color: #66cc33;
-    font-weight: 700;
-    font-size: 1.2rem;
+        color: #66cc33;
+        font-weight: 700;
+        font-size: 1.2rem;
     }
+
     .motor-desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    font-size: 0.9rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 0.9rem;
     }
+
     .search-bar-wrapper {
-    max-width: 700px;
-    margin: 0 auto 40px auto;
+        max-width: 700px;
+        margin: 0 auto 40px auto;
     }
 </style>
 <div class="container py-5">
@@ -101,7 +108,7 @@
 
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="@finalUrl" target="@target"
-                        onclick="window.location.href=this.href;">
+                           onclick="window.location.href=this.href;">
                             @caption<i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul class="collapse show list-unstyled pl-3">
@@ -165,94 +172,7 @@
                     </div>
 
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
-                        @if (motors != null && motors.Any())
-                        {
-                            foreach (var item in motors)
-                            {
-                                <div class="col">
-                                    <div class="card h-100 border-1 shadow-sm motor-card">
-                                        <div class="motor-img-container">
-                                            @if (string.IsNullOrWhiteSpace(item.ImageUrl))
-                                            {
-                                                <img src="../Content/black-moto.png" alt="motor image" />
-                                            }
-                                            else
-                                            {
-                                                <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" alt="motor image" />
-                                            }
-                                        </div>
-                                        <div class="card-body d-flex flex-column text-center">
-                                            <h2 class="card-title text-uppercase motor-name mb-1">
-                                                @Html.DisplayFor(modelItem => item.Name)
-                                            </h2>
-                                            <div class="mb-3">
-                                                <span class="motor-price">@Html.DisplayFor(modelItem => item.Price) VNĐ</span>
-                                            </div>
-                                            <p class="card-text text-muted motor-desc">
-                                                @Html.DisplayFor(modelItem => item.Description)
-                                            </p>
-                                            <div class="mt-auto pt-3">
-                                                <div class="d-flex justify-content-between">
-                                                    <!-- Button Edit -->
-                                                    <button type="button" class="btn btn-sm btn-primary w-50 me-1" data-bs-toggle="modal" data-bs-target="#editMotorModal-@item.Id">
-                                                        Edit
-                                                    </button>
-
-                                                    <!-- Button Delete -->
-                                                    @using (Html.BeginUmbracoForm("DeleteMotor", "MotorSurface", new { id = item.Id }, new { @class = "w-50 ms-1", onsubmit = "return confirm('Confirm delete this motor?');" }))
-                                                    {
-                                                        @Html.AntiForgeryToken()
-                                                        <button type="submit" class="btn btn-sm btn-danger w-100">Delete</button>
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Modal Edit for each Motor -->
-                                <div class="modal fade" id="editMotorModal-@item.Id" tabindex="-1" aria-labelledby="editModalLabel-@item.Id" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            @using (Html.BeginUmbracoForm("UpdateMotor", "MotorSurface", FormMethod.Post))
-                                            {
-                                                @Html.AntiForgeryToken()
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="editModalLabel-@item.Id">Edit Motor</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <input type="hidden" name="Id" value="@item.Id" />
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Name Motor</label>
-                                                        <input type="text" class="form-control" name="Name" value="@item.Name" required />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Price (VNĐ)</label>
-                                                        <input type="number" class="form-control" name="Price" value="@item.Price" required />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Description</label>
-                                                        <textarea class="form-control" name="Description" rows="3">@item.Description</textarea>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">URL Image</label>
-                                                        <input type="text" class="form-control" name="ImageUrl" value="@item.ImageUrl" />
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary">Save</button>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        }
-                        else
-                        { <div>Not found any data!</div>
-                        }
+                        @Html.Action("SearchMotor", "MotorSurface", new { keyword = Request.QueryString["keyword"] })
                     </div>
                 </main>
             }
@@ -311,7 +231,7 @@
                     <!--Controls-->
                     <div class="col-1 align-self-center">
                         <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
-                        <i class="text-light fas fa-chevron-left"></i>
+                            <i class="text-light fas fa-chevron-left"></i>
                         </a>
                     </div>
                     <!--End Controls-->
@@ -323,31 +243,31 @@
                                 <!--First slide-->
                                 @if (brandImgs != null && brandImgs.Any())
                                 {
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        @foreach (var image in brandImgs)
-                                        {
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="@image.Url" alt="@image.Name" /></a>
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            @foreach (var image in brandImgs)
+                                            {
+                                                <div class="col-3 p-md-5">
+                                                    <a href="#"><img class="img-fluid brand-img" src="@image.Url" alt="@image.Name" /></a>
+                                                </div>
+                                            }
                                         </div>
-                                        }
                                     </div>
-                                </div>
                                 }
                                 <!--End First slide-->
                                 <!--Second slide-->
                                 @if (brandImgs != null && brandImgs.Any())
                                 {
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        @foreach (var image in brandImgs)
-                                        {
-                                        <div class="col-3 p-md-5">
-                                            <a href="#"><img class="img-fluid brand-img" src="@image.Url" alt="@image.Name" /></a>
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            @foreach (var image in brandImgs)
+                                            {
+                                                <div class="col-3 p-md-5">
+                                                    <a href="#"><img class="img-fluid brand-img" src="@image.Url" alt="@image.Name" /></a>
+                                                </div>
+                                            }
                                         </div>
-                                        }
                                     </div>
-                                </div>
                                 }
                                 <!--End Second slide-->
                             </div>
@@ -358,7 +278,7 @@
                     <!--Controls-->
                     <div class="col-1 align-self-center">
                         <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
-                        <i class="text-light fas fa-chevron-right"></i>
+                            <i class="text-light fas fa-chevron-right"></i>
                         </a>
                     </div>
                     <!--End Controls-->

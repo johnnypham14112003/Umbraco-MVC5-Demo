@@ -80,6 +80,7 @@ namespace Repository.Repository
             exist.Name = motor.Name;
             exist.Description = motor.Description;
             exist.Price = motor.Price;
+            exist.ImageUrl = motor.ImageUrl;
             return _context.SaveChanges() > 0;
         }
     }

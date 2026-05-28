@@ -294,6 +294,10 @@
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
     <Content Include="Content\black-moto.png" />
+    <Content Include="Content\fonts\fa-brands-400.svg" />
+    <Content Include="Content\fonts\fa-regular-400.svg" />
+    <Content Include="Content\fonts\fa-solid-900.svg" />
+    <Content Include="Content\fonts\slick.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
@@ -304,7 +308,7 @@
     <Compile Include="App_Start\DependencyRegistrar.cs" />
     <Compile Include="Controllers\AuthSurfaceController.cs" />
     <Compile Include="Controllers\MotorSurfaceController.cs" />
-    <Compile Include="Controllers\ShopPageDeclarationController.cs" />
+    <Compile Include="Extension\Examine\MotorIndexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +335,21 @@
     <Content Include="config\BackOfficeTours\getting-started.json" />
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
+    <Content Include="Content\fonts\fa-brands-400.eot" />
+    <Content Include="Content\fonts\fa-brands-400.ttf" />
+    <Content Include="Content\fonts\fa-brands-400.woff" />
+    <Content Include="Content\fonts\fa-brands-400.woff2" />
+    <Content Include="Content\fonts\fa-regular-400.eot" />
+    <Content Include="Content\fonts\fa-regular-400.ttf" />
+    <Content Include="Content\fonts\fa-regular-400.woff" />
+    <Content Include="Content\fonts\fa-regular-400.woff2" />
+    <Content Include="Content\fonts\fa-solid-900.eot" />
+    <Content Include="Content\fonts\fa-solid-900.ttf" />
+    <Content Include="Content\fonts\fa-solid-900.woff" />
+    <Content Include="Content\fonts\fa-solid-900.woff2" />
+    <Content Include="Content\fonts\slick.eot" />
+    <Content Include="Content\fonts\slick.ttf" />
+    <Content Include="Content\fonts\slick.woff" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -351,12 +370,13 @@
     <Content Include="Views\HomePage.cshtml" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\ShopPage.cshtml" />
-    <Content Include="Views\Partials\HomePageNested\HomePageSection1.cshtml" />
-    <Content Include="Views\Partials\HomePageNested\HomePageSection2.cshtml" />
-    <Content Include="Views\Partials\HomePageNested\HomePageSection3.cshtml" />
     <Content Include="Views\Partials\_LoginForm.cshtml" />
     <Content Include="Views\LoginPage.cshtml" />
-    <Content Include="Views\Partials\HomePageNested\HomePageSection4.cshtml" />
+    <Content Include="Views\Partials\HomePageBody\homePageSection1.cshtml" />
+    <Content Include="Views\Partials\HomePageBody\homePageSection2.cshtml" />
+    <Content Include="Views\Partials\HomePageBody\homePageSection3.cshtml" />
+    <Content Include="Views\Partials\HomePageBody\homePageSection4.cshtml" />
+    <Content Include="Views\Partials\MotorCardList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

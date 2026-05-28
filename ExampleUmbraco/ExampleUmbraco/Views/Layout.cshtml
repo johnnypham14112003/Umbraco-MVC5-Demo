@@ -4,12 +4,12 @@
 @{
     // Get current url path
     string currentPath = Request.Url.AbsolutePath;
-    
+
     // Handle english url
     string enUrl = currentPath;
     if (enUrl.StartsWith("/vi/", StringComparison.OrdinalIgnoreCase))
     {
-        enUrl = enUrl.Substring(3); 
+        enUrl = enUrl.Substring(3);
     }
     else if (enUrl.Equals("/vi", StringComparison.OrdinalIgnoreCase))
     {
@@ -23,12 +23,12 @@
     {
         viUrl = viUrl == "/" ? "/vi" : "/vi" + viUrl;
     }
-    
+
     // ================================================================================
     // Get data content directly on a node without depend on CurrentPage node
     var nodeLayoutContent = Umbraco.TypedContentAtRoot()
                                    .FirstOrDefault(x => x.DocumentTypeAlias == "layoutDeclaration");
-                                   
+
     var tabIcon = nodeLayoutContent.GetPropertyValue<IPublishedContent>("tabIcon");
 
     // Get RAW to make UMBRACO skip CONVERTER
@@ -43,7 +43,7 @@
     var otherProp = nodeLayoutContent.GetProperty("listOthersRef");
     var listOthersRefRaw = (otherProp != null && otherProp.DataValue != null) ? otherProp.DataValue.ToString() : "";
     JArray otherArray = !string.IsNullOrWhiteSpace(listOthersRefRaw) ? JArray.Parse(listOthersRefRaw) : new JArray();
-    
+
     // Declare alias Document Type
     string tabTitle = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("tabTitle") : "";
     string mailTo = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("mailTo") : "";
@@ -51,7 +51,7 @@
     string brandName = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("brandName") : "";
     string address = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("address") : "";
     string copyRight = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("copyRight") : "";
-    
+
     var titleListProductsRef = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("titleListProductsRef") : "";
     var titleListOthersRef = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("titleListOthersRef") : "";
 }
@@ -137,11 +137,12 @@
                 <div class="navbar align-self-center d-flex">
                     <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
+                            <form action="/shop/" method="get" class="modal-content modal-body border-0 p-0">
+                                <input type="text" class="form-control" name="keyword" placeholder="Nhập tên xe (VD: Honda, SH...)"/>
+                                <button type="submit"><i class="fa fa-fw fa-search"></i></button>
+                            </form>
                         </div>
+
                     </div>
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
@@ -156,7 +157,7 @@
                     </a>
                 </div>
             </div>
-            
+
             <div class="language-switcher" style="margin-left:10px">
                 <select onchange="location = this.value;" class="form-select form-select-sm" style="width: auto; display: inline-block;">
                     <option value="@viUrl" @(currentPath.StartsWith("/vi") ? "selected" : "")>
@@ -177,10 +178,10 @@
             <div class="w-100 pt-1 mb-5 text-right">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+            <form action="/shop/" method="get" class="modal-content modal-body border-0 p-0">
                 <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
+                    <input type="text" class="form-control" id="inputModalSearch" name="keyword" placeholder="Nhập tên xe (VD: Honda, SH...)" />
+                    <button class="input-group-text bg-success text-light" type="submit">
                         <i class="fa fa-fw fa-search text-white"></i>
                     </button>
                 </div>
