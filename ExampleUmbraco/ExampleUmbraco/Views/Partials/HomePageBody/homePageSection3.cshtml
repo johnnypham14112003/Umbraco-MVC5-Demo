@@ -1,8 +1,15 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<IPublishedContent>
 @using Our.Umbraco.Vorto.Extensions
+<!-- vvv For Mapping vvv -->
+@using Service.ViewModels.UmbracoContent
+@using ExampleUmbraco.Extension
 @{
     // Query all child node data
-    var featureItems = Model.Content.Children.Where(x => x.IsVisible()).ToList();
+    var childNodes = Model.Content.Children.Where(x => x.IsVisible());
+
+    List<FeatureItemModel> featureItems = childNodes.ContentMapToList<FeatureItemModel>();
+
+    var featureSection = Model.Content.ContentMapTo<FeatureSection>();
 }
 
     <!-- Start Featured Product -->
@@ -10,19 +17,17 @@
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">@Model.Content.GetVortoValue("homeSection3Title")</h1>
-                    <p>@Model.Content.GetVortoValue("homeSection3Description")</p>
+                    <h1 class="h1">@featureSection.HomeSection3Title</h1>
+                    <p>@featureSection.HomeSection3Description</p>
                 </div>
             </div>
             <div class="row">
                 @foreach(var item in featureItems)
                 {
-                    var featureImg = item.GetPropertyValue<IPublishedContent>("featureImage");
-                    
                     <div class="col-12 col-md-4 mb-4">
                         <div class="card h-100">
                             <a href="shop-single.html">
-                                <img src="@(featureImg != null ? featureImg.Url : "")" class="card-img-top" alt="...">
+                                <img src="@item.FeatureImage" class="card-img-top" alt="...">
                             </a>
                             <div class="card-body">
                                 <ul class="list-unstyled d-flex justify-content-between">
@@ -33,11 +38,11 @@
                                         <i class="text-muted fa fa-star"></i>
                                         <i class="text-muted fa fa-star"></i>
                                     </li>
-                                    <li class="text-muted text-right">@item.GetVortoValue("featurePrice")</li>
+                                    <li class="text-muted text-right">@item.FeaturePrice</li>
                                 </ul>
-                                <a href="shop-single.html" class="h2 text-decoration-none text-dark">@item.GetVortoValue("featureName")</a>
-                                <p class="card-text">@item.GetVortoValue("featureDescription")</p>
-                                <p class="text-muted">@item.GetVortoValue("featureReview")</p>
+                                <a href="shop-single.html" class="h2 text-decoration-none text-dark">@item.FeatureName</a>
+                                <p class="card-text">@item.FeatureDescription</p>
+                                <p class="text-muted">@item.FeatureReview</p>
                             </div>
                         </div>
                     </div>

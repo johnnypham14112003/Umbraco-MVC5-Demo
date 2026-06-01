@@ -1,8 +1,13 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<IPublishedContent>
 @using Our.Umbraco.Vorto.Extensions
+<!-- vvv For Mapping vvv -->
+@using Service.ViewModels.UmbracoContent
+@using ExampleUmbraco.Extension
 @{
     // Query all child node data
-    var bannerItems = Model.Content.Children.Where(x => x.IsVisible()).ToList();
+    var childNodes = Model.Content.Children.Where(x => x.IsVisible());
+    
+    List<BannerItemModel> bannerItems = childNodes.ContentMapToList<BannerItemModel>();
 }
 
 @if (bannerItems.Any())
@@ -19,23 +24,18 @@
             @for(int i = 0; i < bannerItems.Count; i++)
             {
                 var currentItem = bannerItems[i];
-                var bannerImg = currentItem.GetPropertyValue<IPublishedContent>("bannerImage");
-                
                 var isActive = (i == 0) ? "active" : null;
-                
                 <div class="carousel-item @isActive">
                     <div class="container">
                         <div class="row p-5">
                             <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                                <img class="img-fluid" src="@(bannerImg != null ? bannerImg.Url : "")" alt="">
+                                <img class="img-fluid" src="@currentItem.BannerImage" alt="">
                             </div>
                             <div class="col-lg-6 mb-0 d-flex align-items-center">
                                 <div class="text-align-left align-self-center">
-                                    <h1 class="h1 text-success">@currentItem.GetVortoValue("bannerTitle")</h1>
-                                    <h3 class="h2">@currentItem.GetVortoValue("bannerSubtitle")</h3>
-                                    <p>
-                                        @currentItem.GetVortoValue("bannerSummary")
-                                    </p>
+                                    <h1 class="h1 text-success">@currentItem.BannerTitle</h1>
+                                    <h3 class="h2">@currentItem.BannerSubtitle</h3>
+                                    <p>@currentItem.BannerSummary</p>
                                 </div>
                             </div>
                         </div>

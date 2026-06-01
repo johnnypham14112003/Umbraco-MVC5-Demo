@@ -33,7 +33,7 @@ namespace ExampleUmbraco.Controllers
 
             if (!string.IsNullOrWhiteSpace(keyword))
             {
-                // Use Custom Search exactly which declare in "ExamineSettings.config"
+                // Use Custom Search which is declared in "ExamineSettings.config"
                 var searcher = ExamineManager.Instance.SearchProviderCollection["MotorSearcher"];
                 var searchCriteria = searcher.CreateSearchCriteria(BooleanOperation.Or);
 

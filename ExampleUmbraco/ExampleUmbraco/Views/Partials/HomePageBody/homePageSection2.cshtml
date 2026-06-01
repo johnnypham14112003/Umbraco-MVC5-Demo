@@ -1,25 +1,30 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<IPublishedContent>
 @using Our.Umbraco.Vorto.Extensions
+<!-- vvv For Mapping vvv -->
+@using Service.ViewModels.UmbracoContent
+@using ExampleUmbraco.Extension
 @{
     // Query all child node data
-    var productItems = Model.Content.Children.Where(x => x.IsVisible()).ToList();
+    var childNodes = Model.Content.Children.Where(x => x.IsVisible());
+
+    List<ProductItemModel> productItems = childNodes.ContentMapToList<ProductItemModel>();
+
+    var productSection = Model.Content.ContentMapTo<ProductSection>();
 }
 
 <!-- Start Categories of The Month -->
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">@Model.Content.GetVortoValue("homeSection2Title")</h1>
-                <p>@Model.Content.GetVortoValue("homeSection2Description")</p>
+                <h1 class="h1">@productSection.HomeSection2Title</h1>
+                <p>@productSection.HomeSection2Description</p>
             </div>
         </div>
         <div class="row">
             @foreach(var item in productItems){
-                var productImg = item.GetPropertyValue<IPublishedContent>("productImage");
-                
                 <div class="col-12 col-md-4 p-5 mt-3">
-                    <a href="#"><img src="@(productImg != null ? productImg.Url : "")" class="rounded-circle img-fluid border"></a>
-                    <h5 class="text-center mt-3 mb-3">@item.GetVortoValue("productName")</h5>
+                    <a href="#"><img src="@item.ProductImage" class="rounded-circle img-fluid border"></a>
+                    <h5 class="text-center mt-3 mb-3">@item.ProductName</h5>
                     <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
                 </div>
             }

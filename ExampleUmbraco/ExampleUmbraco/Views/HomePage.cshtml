@@ -1,24 +1,24 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Layout.cshtml";
-    
+
     const string sectionsFolder = "HomePageBody";
-    
+
     // Query all child node data
     var bodyNode = Model.Content.Children.FirstOrDefault(x => x.DocumentTypeAlias == "homePageBody");
-    var sections = bodyNode != null 
-                   ? bodyNode.Children.Where(x => x.IsVisible()) 
-                   : Enumerable.Empty<Umbraco.Core.Models.IPublishedContent>();
+    var sections = bodyNode != null
+                   ? bodyNode.Children.Where(x => x.IsVisible())
+                   : Enumerable.Empty<IPublishedContent>();
 }
 
 @foreach (var section in sections)
 {
     // Combine path
     string partialPath = sectionsFolder + "/" + section.DocumentTypeAlias;
-    
+
     // Check exist
     var viewEngineResult = ViewEngines.Engines.FindPartialView(Html.ViewContext, partialPath);
-    
+
     if (viewEngineResult.View != null)
     {
         @Html.Partial(partialPath, section)

@@ -309,6 +309,7 @@
     <Compile Include="Controllers\AuthSurfaceController.cs" />
     <Compile Include="Controllers\MotorSurfaceController.cs" />
     <Compile Include="Extension\Examine\MotorIndexer.cs" />
+    <Compile Include="Extension\PublishContentMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

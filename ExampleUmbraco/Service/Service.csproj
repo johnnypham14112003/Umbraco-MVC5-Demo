@@ -66,6 +66,13 @@
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AuthViewModel.cs" />
     <Compile Include="ViewModels\MotorViewModel.cs" />
+    <Compile Include="ViewModels\UmbracoContent\BannerItemModel.cs" />
+    <Compile Include="ViewModels\UmbracoContent\FeatureSection.cs" />
+    <Compile Include="ViewModels\UmbracoContent\FeatureItemModel.cs" />
+    <Compile Include="ViewModels\UmbracoContent\PlanItemModel.cs" />
+    <Compile Include="ViewModels\UmbracoContent\PlanSection.cs" />
+    <Compile Include="ViewModels\UmbracoContent\ProductItemModel.cs" />
+    <Compile Include="ViewModels\UmbracoContent\ProductSection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
