@@ -1,6 +1,9 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Umbraco.Web.Models
 @using Newtonsoft.Json.Linq
+<!-- vvv For Mapping vvv -->
+@using ExampleUmbraco.Extension
+@using ExampleUmbraco.Extension.UmbracoConverter
 @{
     // Get current url path
     string currentPath = Request.Url.AbsolutePath;
@@ -25,47 +28,24 @@
     }
 
     // ================================================================================
+
     // Get data content directly on a node without depend on CurrentPage node
     var nodeLayoutContent = Umbraco.TypedContentAtRoot()
                                    .FirstOrDefault(x => x.DocumentTypeAlias == "layoutDeclaration");
 
-    var tabIcon = nodeLayoutContent.GetPropertyValue<IPublishedContent>("tabIcon");
-
-    // Get RAW to make UMBRACO skip CONVERTER
-    var navProp = nodeLayoutContent.GetProperty("listNavigators");
-    var listNavigatorsRaw = (navProp != null && navProp.DataValue != null) ? navProp.DataValue.ToString() : "";
-    JArray navArray = !string.IsNullOrWhiteSpace(listNavigatorsRaw) ? JArray.Parse(listNavigatorsRaw) : new JArray();
-
-    var prodProp = nodeLayoutContent.GetProperty("listProductsRef");
-    var listProductsRefRaw = (prodProp != null && prodProp.DataValue != null) ? prodProp.DataValue.ToString() : "";
-    JArray prodArray = !string.IsNullOrWhiteSpace(listProductsRefRaw) ? JArray.Parse(listProductsRefRaw) : new JArray();
-
-    var otherProp = nodeLayoutContent.GetProperty("listOthersRef");
-    var listOthersRefRaw = (otherProp != null && otherProp.DataValue != null) ? otherProp.DataValue.ToString() : "";
-    JArray otherArray = !string.IsNullOrWhiteSpace(listOthersRefRaw) ? JArray.Parse(listOthersRefRaw) : new JArray();
-
-    // Declare alias Document Type
-    string tabTitle = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("tabTitle") : "";
-    string mailTo = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("mailTo") : "";
-    string telephone = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("telephone") : "";
-    string brandName = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("brandName") : "";
-    string address = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("address") : "";
-    string copyRight = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("copyRight") : "";
-
-    var titleListProductsRef = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("titleListProductsRef") : "";
-    var titleListOthersRef = nodeLayoutContent != null ? nodeLayoutContent.GetPropertyValue<string>("titleListOthersRef") : "";
+    var layout = nodeLayoutContent.ContentMapTo<LayoutNode>();
 }
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>@tabTitle</title>
+    <title>@(layout.TabTitle)</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="@(tabIcon != null ? tabIcon.Url : "")">
-    <link rel="shortcut icon" type="image/x-icon" href="@(tabIcon != null ? tabIcon.Url : "")">
+    <link rel="apple-touch-icon" href="@(layout.TabIcon)">
+    <link rel="shortcut icon" type="image/x-icon" href="@(layout.TabIcon)">
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/templatemo.css">
@@ -82,9 +62,9 @@
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:@mailTo.ToLower()">@mailTo.ToLower()</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:@(layout.MailTo.ToLower())">@(layout.MailTo.ToLower())</a>
                     <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:@telephone">@telephone</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:@(layout.Telephone)">@(layout.Telephone)</a>
                 </div>
                 <div>
                     <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
@@ -101,7 +81,7 @@
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="/">
-                @brandName
+                @(layout.BrandName)
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,37 +90,27 @@
 
             <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
                 <div class="flex-fill">
-
-                    @if (navArray != null && navArray.Count > 0)
+                    @if (layout.ListNavigators != null && layout.ListNavigators.Count > 0)
                     {
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                            @foreach (JToken item in navArray)
+                            @foreach (var nav in layout.ListNavigators)
                             {
-                                var caption = item["caption"] != null ? item["caption"].ToString() : "";
-                                var link = item["link"] != null ? item["link"].ToString() : "";
-                                var isInternal = item["isInternal"] != null ? item["isInternal"].ToObject<bool>() : false;
-                                var newWindow = item["newWindow"] != null ? item["newWindow"].ToObject<bool>() : false;
-                                var target = newWindow ? "_blank" : "_self";
-
-                                var finalUrl = link;
-                                if (isInternal && !string.IsNullOrEmpty(link))
-                                {
-                                    var targetNode = Umbraco.TypedContent(link);
-                                    if (targetNode != null) { finalUrl = targetNode.Url; }
-                                }
-
-                                <li class="nav-item"><a class="nav-link" href="@finalUrl" target="@target">@caption</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@nav.Url" target="@(nav.NewWindow ? "_blank" : "_self")">
+                                        @nav.Caption
+                                    </a>
+                                </li>
                             }
                         </ul>
                     }
                 </div>
-                
+
                 <div class="navbar align-self-center d-flex">
                     <!-- SEARCH BAR -->
                     <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
                         <div class="input-group">
                             <form action="/shop/" method="get" class="modal-content modal-body border-0 p-0">
-                                <input type="text" class="form-control" name="keyword" placeholder="Nhập tên xe (VD: Honda, SH...)"/>
+                                <input type="text" class="form-control" name="keyword" placeholder="Nhập tên xe (VD: Honda, SH...)" />
                                 <button type="submit"><i class="fa fa-fw fa-search"></i></button>
                             </form>
                         </div>
@@ -150,7 +120,7 @@
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     <!-- ======== -->
-                    
+
                     <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
@@ -205,64 +175,48 @@
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            @address
+                            @(layout.Address)
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:@telephone">@telephone</a>
+                            <a class="text-decoration-none" href="tel:@(layout.Telephone)">@(layout.Telephone)</a>
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:@mailTo">@mailTo</a>
+                            <a class="text-decoration-none" href="mailto:@(layout.MailTo)">@(layout.MailTo)</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">@titleListProductsRef</h2>
-                    @if (prodArray != null && prodArray.Count > 0)
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">@(layout.TitleListProductsRef)</h2>
+                    @if (layout.ListProductsRef != null && layout.ListProductsRef.Count > 0)
                     {
                         <ul class="list-unstyled text-light footer-link-list">
-                            @foreach (JToken item in prodArray)
+                            @foreach (var product in layout.ListProductsRef)
                             {
-                                var caption = item["caption"] != null ? item["caption"].ToString() : "";
-                                var link = item["link"] != null ? item["link"].ToString() : "";
-                                var isInternal = item["isInternal"] != null ? item["isInternal"].ToObject<bool>() : false;
-                                var newWindow = item["newWindow"] != null ? item["newWindow"].ToObject<bool>() : false;
-                                var target = newWindow ? "_blank" : "_self";
-
-                                var finalUrl = link;
-                                if (isInternal && !string.IsNullOrEmpty(link))
-                                {
-                                    var targetNode = Umbraco.TypedContent(link);
-                                    if (targetNode != null) { finalUrl = targetNode.Url; }
-                                }
-                                <li><a class="text-decoration-none" href="@finalUrl" target="@target">@caption</a></li>
+                                <li>
+                                    <a class="text-decoration-none" href="@product.Url" target="@(product.NewWindow ? "_blank" : "_self")">
+                                        @product.Caption
+                                    </a>
+                                </li>
                             }
                         </ul>
                     }
                 </div>
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">@titleListOthersRef</h2>
-                    @if (otherArray != null && otherArray.Count > 0)
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">@(layout.TitleListOthersRef)</h2>
+                    @if (layout.ListOthersRef != null && layout.ListOthersRef.Count > 0)
                     {
                         <ul class="list-unstyled text-light footer-link-list">
-                            @foreach (JToken item in otherArray)
+                            @foreach (var other in layout.ListOthersRef)
                             {
-                                var caption = item["caption"] != null ? item["caption"].ToString() : "";
-                                var link = item["link"] != null ? item["link"].ToString() : "";
-                                var isInternal = item["isInternal"] != null ? item["isInternal"].ToObject<bool>() : false;
-                                var newWindow = item["newWindow"] != null ? item["newWindow"].ToObject<bool>() : false;
-                                var target = newWindow ? "_blank" : "_self";
-
-                                var finalUrl = link;
-                                if (isInternal && !string.IsNullOrEmpty(link))
-                                {
-                                    var targetNode = Umbraco.TypedContent(link);
-                                    if (targetNode != null) { finalUrl = targetNode.Url; }
-                                }
-                                <li><a class="text-decoration-none" href="@finalUrl" target="@target">@caption</a></li>
+                                <li>
+                                    <a class="text-decoration-none" href="@other.Url" target="@(other.NewWindow ? "_blank" : "_self")">
+                                        @other.Caption
+                                    </a>
+                                </li>
                             }
                         </ul>
                     }
@@ -305,7 +259,7 @@
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; @copyRight
+                            Copyright &copy; @(layout.CopyRight)
                             | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
                         </p>
                     </div>

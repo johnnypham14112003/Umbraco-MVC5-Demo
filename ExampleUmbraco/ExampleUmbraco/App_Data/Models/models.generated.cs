@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "d64b449f9df9ba88")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "d12590bc528dbac1")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.3")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -53,9 +53,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// address
 		///</summary>
 		[ImplementPropertyType("address")]
-		public string Address
+		public Our.Umbraco.Vorto.Models.VortoValue<string> Address
 		{
-			get { return this.GetPropertyValue<string>("address"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("address"); }
 		}
 
 		///<summary>
@@ -71,45 +71,45 @@ namespace Umbraco.Web.PublishedContentModels
 		/// copy-right
 		///</summary>
 		[ImplementPropertyType("copyRight")]
-		public string CopyRight
+		public Our.Umbraco.Vorto.Models.VortoValue<string> CopyRight
 		{
-			get { return this.GetPropertyValue<string>("copyRight"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("copyRight"); }
 		}
 
 		///<summary>
 		/// list navigators
 		///</summary>
 		[ImplementPropertyType("listNavigators")]
-		public Umbraco.Web.Models.RelatedLinks ListNavigators
+		public Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks> ListNavigators
 		{
-			get { return this.GetPropertyValue<Umbraco.Web.Models.RelatedLinks>("listNavigators"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks>>("listNavigators"); }
 		}
 
 		///<summary>
 		/// list-others-ref
 		///</summary>
 		[ImplementPropertyType("listOthersRef")]
-		public Umbraco.Web.Models.RelatedLinks ListOthersRef
+		public Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks> ListOthersRef
 		{
-			get { return this.GetPropertyValue<Umbraco.Web.Models.RelatedLinks>("listOthersRef"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks>>("listOthersRef"); }
 		}
 
 		///<summary>
 		/// list-products-ref
 		///</summary>
 		[ImplementPropertyType("listProductsRef")]
-		public Umbraco.Web.Models.RelatedLinks ListProductsRef
+		public Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks> ListProductsRef
 		{
-			get { return this.GetPropertyValue<Umbraco.Web.Models.RelatedLinks>("listProductsRef"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks>>("listProductsRef"); }
 		}
 
 		///<summary>
 		/// mail-to
 		///</summary>
 		[ImplementPropertyType("mailTo")]
-		public string MailTo
+		public Our.Umbraco.Vorto.Models.VortoValue<string> MailTo
 		{
-			get { return this.GetPropertyValue<string>("mailTo"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("mailTo"); }
 		}
 
 		///<summary>
@@ -125,36 +125,45 @@ namespace Umbraco.Web.PublishedContentModels
 		/// tab-title
 		///</summary>
 		[ImplementPropertyType("tabTitle")]
-		public string TabTitle
+		public Our.Umbraco.Vorto.Models.VortoValue<string> TabTitle
 		{
-			get { return this.GetPropertyValue<string>("tabTitle"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("tabTitle"); }
 		}
 
 		///<summary>
 		/// telephone
 		///</summary>
 		[ImplementPropertyType("telephone")]
-		public string Telephone
+		public Our.Umbraco.Vorto.Models.VortoValue<string> Telephone
 		{
-			get { return this.GetPropertyValue<string>("telephone"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("telephone"); }
 		}
 
 		///<summary>
 		/// title-list-others-ref
 		///</summary>
 		[ImplementPropertyType("titleListOthersRef")]
-		public string TitleListOthersRef
+		public Our.Umbraco.Vorto.Models.VortoValue<string> TitleListOthersRef
 		{
-			get { return this.GetPropertyValue<string>("titleListOthersRef"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("titleListOthersRef"); }
 		}
 
 		///<summary>
 		/// title-list-products-ref
 		///</summary>
 		[ImplementPropertyType("titleListProductsRef")]
-		public string TitleListProductsRef
+		public Our.Umbraco.Vorto.Models.VortoValue<string> TitleListProductsRef
 		{
-			get { return this.GetPropertyValue<string>("titleListProductsRef"); }
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<string>>("titleListProductsRef"); }
+		}
+
+		///<summary>
+		/// vsca
+		///</summary>
+		[ImplementPropertyType("vsca")]
+		public Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks> Vsca
+		{
+			get { return this.GetPropertyValue<Our.Umbraco.Vorto.Models.VortoValue<Umbraco.Web.Models.RelatedLinks>>("vsca"); }
 		}
 	}
 
