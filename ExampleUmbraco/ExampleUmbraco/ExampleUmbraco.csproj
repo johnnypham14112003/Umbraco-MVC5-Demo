@@ -308,12 +308,13 @@
     <Compile Include="App_Start\DependencyRegistrar.cs" />
     <Compile Include="Controllers\AuthSurfaceController.cs" />
     <Compile Include="Controllers\MotorSurfaceController.cs" />
-    <Compile Include="Extension\UmbracoConverter\IUmbracoPropertyConverter.cs" />
-    <Compile Include="Extension\UmbracoConverter\LayoutNode.cs" />
-    <Compile Include="Extension\UmbracoConverter\RelatedLink.cs" />
-    <Compile Include="Extension\UmbracoConverter\UmbracoConverterAttribute.cs" />
+    <Compile Include="Extension\UmbracoMapping\UmbracoConverter\IUmbracoPropertyConverter.cs" />
+    <Compile Include="Extension\UmbracoMapping\AdvanceModels\LayoutNode.cs" />
+    <Compile Include="Extension\UmbracoMapping\AdvanceModels\RelatedLink.cs" />
+    <Compile Include="Extension\UmbracoMapping\UmbracoConverter\UmbracoConverterAttribute.cs" />
     <Compile Include="Extension\Examine\MotorIndexer.cs" />
-    <Compile Include="Extension\PublishContentMapper.cs" />
+    <Compile Include="Extension\UmbracoMapping\PublishContentMapper.cs" />
+    <Compile Include="Extension\UmbracoMapping\UmbracoConverter\VortoAwareRelatedLinkConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

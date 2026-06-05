@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using ExampleUmbraco.Extension.UmbracoMapping.UmbracoConverter;
+using System.Collections.Generic;
 
-namespace ExampleUmbraco.Extension.UmbracoConverter
+namespace ExampleUmbraco.Extension.UmbracoMapping.AdvanceModels
 {
     public class LayoutNode
     {
@@ -12,16 +13,16 @@ namespace ExampleUmbraco.Extension.UmbracoConverter
 
         public string BrandName { get; set; }
 
-        [UmbracoConverter(typeof(RelatedLinkListConverter))]
+        [UmbracoConverter(typeof(RelatedLinkListConverter), UseRawDataValue = true)]
         public List<RelatedLink> ListNavigators { get; set; }
 
         public string Address { get; set; }
         public string CopyRight { get; set; }
         public string TitleListProductsRef { get; set; }
-        [UmbracoConverter(typeof(RelatedLinkListConverter))]
+        [UmbracoConverter(typeof(RelatedLinkListConverter), UseRawDataValue = true)]
         public List<RelatedLink> ListProductsRef { get; set; }
         public string TitleListOthersRef { get; set; }
-        [UmbracoConverter(typeof(RelatedLinkListConverter))]
+        [UmbracoConverter(typeof(RelatedLinkListConverter), UseRawDataValue = true)]
         public List<RelatedLink> ListOthersRef { get; set; }
     }
 }

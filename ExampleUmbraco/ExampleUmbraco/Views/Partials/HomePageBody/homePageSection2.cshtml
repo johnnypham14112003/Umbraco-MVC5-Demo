@@ -2,7 +2,7 @@
 @using Our.Umbraco.Vorto.Extensions
 <!-- vvv For Mapping vvv -->
 @using Service.ViewModels.UmbracoContent
-@using ExampleUmbraco.Extension
+@using ExampleUmbraco.Extension.UmbracoMapping
 @{
     // Query all child node data
     var childNodes = Model.Content.Children.Where(x => x.IsVisible());

@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using ExampleUmbraco.Extension.UmbracoMapping.UmbracoConverter;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using Umbraco.Web;
 
-namespace ExampleUmbraco.Extension.UmbracoConverter
+namespace ExampleUmbraco.Extension.UmbracoMapping.AdvanceModels
 {
     public class RelatedLink
     {
@@ -44,47 +45,40 @@ namespace ExampleUmbraco.Extension.UmbracoConverter
     }
 
     // ─── Converter for 1 RelatedLink ────────────────────────────────────────
-    public class RelatedLinkConverter : IUmbracoPropertyConverter<RelatedLink>, IUmbracoPropertyConverter
+    public class RelatedLinkConverter : VortoAwareRelatedLinkConverter, IUmbracoPropertyConverter<RelatedLink>
     {
-        public RelatedLink Convert(object rawValue)
+        public RelatedLink Convert(object rawValue) => (RelatedLink)ConvertRaw(rawValue);
+        protected override object ConvertJson(string cleanJson)
         {
-            if (rawValue == null) return null;
             try
             {
-                // rawValue can be JArray or raw JSON string
-                var json = rawValue.ToString().Trim();
-
-                // RelatedLinks Umbraco return JSON array, get first item
-                var token = json.StartsWith("[")
-                    ? JArray.Parse(json).FirstOrDefault()
-                    : JToken.Parse(json);
+                var token = cleanJson.TrimStart().StartsWith("[")
+                    ? JArray.Parse(cleanJson).FirstOrDefault()
+                    : JToken.Parse(cleanJson);
 
                 return token != null ? RelatedLink.FromToken(token) : null;
             }
             catch { return null; }
         }
 
-        // Non-generic bridge cho extension dùng reflection
-        public object ConvertRaw(object rawValue) => Convert(rawValue);
+        protected override object GetDefault() => null;
     }
 
-    public class RelatedLinkListConverter : IUmbracoPropertyConverter<List<RelatedLink>>, IUmbracoPropertyConverter
+    public class RelatedLinkListConverter : VortoAwareRelatedLinkConverter, IUmbracoPropertyConverter<List<RelatedLink>>
     {
-        public List<RelatedLink> Convert(object rawValue)
+        public List<RelatedLink> Convert(object rawValue) => (List<RelatedLink>)ConvertRaw(rawValue);
+
+        protected override object ConvertJson(string cleanJson)
         {
-            if (rawValue == null) return new List<RelatedLink>();
             try
             {
-                // rawValue can be JArray or raw JSON string
-                var json = rawValue.ToString().Trim();
-                if (string.IsNullOrWhiteSpace(json)) return new List<RelatedLink>();
-
-                var array = JArray.Parse(json);
-                return array.Select(t => RelatedLink.FromToken(t)).ToList();
+                return JArray.Parse(cleanJson)
+                             .Select(t => RelatedLink.FromToken(t))
+                             .ToList();
             }
-            catch { return new List<RelatedLink>(); }
+            catch { return GetDefault(); }
         }
 
-        public object ConvertRaw(object rawValue) => Convert(rawValue);
+        protected override object GetDefault() => new List<RelatedLink>();
     }
 }

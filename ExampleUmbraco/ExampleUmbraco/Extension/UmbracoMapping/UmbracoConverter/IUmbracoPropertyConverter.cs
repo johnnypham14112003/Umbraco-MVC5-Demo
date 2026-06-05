@@ -1,4 +1,4 @@
-﻿namespace ExampleUmbraco.Extension.UmbracoConverter
+﻿namespace ExampleUmbraco.Extension.UmbracoMapping.UmbracoConverter
 {
     /// <summary>
     /// Implement this interface to custom convert any Umbraco raw value.
