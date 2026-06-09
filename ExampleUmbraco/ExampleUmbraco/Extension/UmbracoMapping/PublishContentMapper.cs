@@ -1,9 +1,11 @@
-﻿using ExampleUmbraco.Extension.UmbracoMapping.UmbracoConverter;
-using Our.Umbraco.Vorto.Extensions;
+﻿using Our.Umbraco.Vorto.Extensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Web.Configuration;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
@@ -30,6 +32,7 @@ namespace ExampleUmbraco.Extension.UmbracoMapping
 
             // Get all properties of a class
             PropertyInfo[] properties = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            string currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
 
             foreach (PropertyInfo prop in properties)
             {
@@ -52,10 +55,19 @@ namespace ExampleUmbraco.Extension.UmbracoMapping
                 var hasVorto = content.HasVortoValue(finalAlias);
                 try
                 {
+                    TypeConverter customConverter = null;
+
+                    // Check if the property assigned [TypeConverter(...)] explicitly
+                    bool hasCustomAttribute = TypeDescriptor.GetProperties(targetObject)[prop.Name]
+                                                .Attributes.OfType<TypeConverterAttribute>().Any();
+
+                    if (hasCustomAttribute)
+                        customConverter = TypeDescriptor.GetProperties(targetObject)[prop.Name].Converter;
+
+                    // --------------------[ HANDLE IMAGE ]--------------------
                     var propertyType = content.ContentType.GetPropertyType(finalAlias);
                     string editorAlias = propertyType != null ? propertyType.PropertyEditorAlias : string.Empty;
 
-                    // --------------------[ HANDLE IMAGE ]--------------------
                     if (editorAlias.Contains("MediaPicker") || editorAlias.Contains("ImageCropper"))
                     {
                         // Must call <IPublishedContent> to get Umbraco object instead an object Id
@@ -66,39 +78,39 @@ namespace ExampleUmbraco.Extension.UmbracoMapping
                         }
 
                         continue;
+
                     }
 
-                    // --------------------[ CUSTOM CONVERTER ]--------------------
-                    var converterAttr = prop.GetCustomAttribute<UmbracoConverterAttribute>();
-                    if (converterAttr != null)
+                    // --------------------[ RELATED LINK (UMBRACO UID ERROR) ]--------------------
+                    // * This section for handle including null internal link (umbraco uid parse error)
+                    if (customConverter != null)
                     {
-                        // UseRawDataValue = true: bypass Umbraco/Vorto, read raw DataValue
-                        object rawInput = converterAttr.UseRawDataValue ?
-                            content.GetProperty(finalAlias)?.DataValue  // Converter auto handle unwrap Vorto
-                            : hasVorto ?
-                                content.GetVortoValue(finalAlias)
-                                : content.GetPropertyValue(finalAlias);    // Fallback to base umbraco if value is simple Vorto
+                        var umbProperty = content.GetProperty(finalAlias);
 
-                        // If have data, parse into C# object
-                        if (rawInput != null)
+                        if (umbProperty != null && umbProperty.DataValue is string rawString && customConverter.CanConvertFrom(typeof(string)))
                         {
-                            var converter = Activator.CreateInstance(converterAttr.ConverterType)
-                                            as IUmbracoPropertyConverter;
-                            prop.SetValue(targetObject, converter?.ConvertRaw(rawInput));
+                            var convertedValue = customConverter.ConvertFrom(rawString);
+                            prop.SetValue(targetObject, convertedValue);
+                            continue;
                         }
-                        continue;
                     }
 
-                    // --------------------[ DEFAULT: VORTO → NORMAL ]--------------------
-                    // Check and get Vorto Value if exist / else Get normal Umbraco Value
+                    // --------------------[ DEFAULT: VORTO → NORMAL(DÙNG UMBRACO PARSED DATA) ]--------------------
+                    // Assign content value into model if != null
                     object finalContentValue = hasVorto ? content.GetVortoValue(finalAlias) : content.GetPropertyValue(finalAlias);
-                    // Asign content value into model if != null
                     if (finalContentValue != null)
                     {
                         if (prop.PropertyType.IsAssignableFrom(finalContentValue.GetType()))
                         {
                             prop.SetValue(targetObject, finalContentValue);
                         }
+                        // Custom Converter not null and can handle Assigned object Umbraco
+                        else if (customConverter != null && customConverter.CanConvertFrom(finalContentValue.GetType()))
+                        {
+                            var convertedValue = customConverter.ConvertFrom(finalContentValue);
+                            prop.SetValue(targetObject, convertedValue);
+                        }
+                        // Fallback: Default convert of C# (int, bool,...)
                         else
                         {
                             var convertedValue = Convert.ChangeType(finalContentValue, prop.PropertyType);

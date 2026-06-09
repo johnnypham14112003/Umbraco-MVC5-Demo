@@ -73,6 +73,7 @@
     <Compile Include="ViewModels\UmbracoContent\PlanSection.cs" />
     <Compile Include="ViewModels\UmbracoContent\ProductItemModel.cs" />
     <Compile Include="ViewModels\UmbracoContent\ProductSection.cs" />
+    <Compile Include="ViewModels\UmbracoDataType\RelatedLink.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

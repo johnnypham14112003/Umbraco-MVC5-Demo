@@ -308,6 +308,8 @@
     <Compile Include="App_Start\DependencyRegistrar.cs" />
     <Compile Include="Controllers\AuthSurfaceController.cs" />
     <Compile Include="Controllers\MotorSurfaceController.cs" />
+    <Compile Include="Extension\UmbracoMapping\CsTypeConverter\LayoutNode.cs" />
+    <Compile Include="Extension\UmbracoMapping\CsTypeConverter\RelatedLinkListConverter.cs" />
     <Compile Include="Extension\UmbracoMapping\UmbracoConverter\IUmbracoPropertyConverter.cs" />
     <Compile Include="Extension\UmbracoMapping\AdvanceModels\LayoutNode.cs" />
     <Compile Include="Extension\UmbracoMapping\AdvanceModels\RelatedLink.cs" />
